@@ -1,4 +1,4 @@
-from astropy.table import QTable, hstack
+#from astropy.table import QTable, hstack
 import numpy as np
 import time
 import datetime
@@ -12,9 +12,9 @@ class OpenClusters:
     """
     Container for open clusters.
     """
-    def __init__(self, cluster, cluster_title, filters, t=None,
+    def __init__(self, cluster, cluster_title, filters,
                  path_in_cluster, path_in_standards, path_out,
-                 verbose=1, verbose_absolute=1):
+                 t=None, verbose=1, verbose_absolute=1):
         """
         Parameters
         ----------
@@ -47,7 +47,7 @@ class OpenClusters:
         self.verbose = verbose
         self.verbose_absolute = verbose_absolute
 
-
+        #checking to see if user specified an output time, t, for use in naming output files
         if t != None:
             self.t = datetime.datetime.now()
         else:
@@ -57,56 +57,109 @@ class OpenClusters:
             print 'output time seen in file names:', t.date()
 
 
-    def PositionMatch(self, tol):
+    def PositionMatch(self, tol, shifts=None):
+        """
 
+        :param shifts: array with horizontal and vertical shift of filters
+        :param tol: tolerance in matching files
+        :return:
+        """
+        # UNDER CONSTRUCTION
         # Reading in Open Cluster Field Data Files
         # Turner11_dao_b.fits.als.1
 
-        als_b = glob.glob(path_in_cluster + cluster + '_b.fits.als.1')
-        als_v = glob.glob(path_in_cluster + cluster + '_v.fits.als.1')
-        als_y = glob.glob(path_in_cluster + cluster + '_y.fits.als.1')
+        if shifts == None:
+            shifts = [np.zeros(len(filters)),np.zeros(len(filters))]
 
-        if verbose == 'yes':
-            print als_b
-            print als_v
-            print als_y
+        for filter_ in filters:
+            #building readin command
+            iraf_als_file = glob.glob(path_in_cluster + cluster + '_' + str(filter_)+'.fits.als.1')
+            #TODO - make it the last als file. Or make input image new variable for PositionMatch
 
-        with open(als_b[0]) as f_in:
-            als_b = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                  dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                         ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
-        with open(als_v[0]) as f_in:
-            als_v = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                  dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                         ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
-        with open(als_y[0]) as f_in:
-            als_y = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                  dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                         ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
+            #printing file name if verbose
+            if verbose:
+                print iraf_als_file
 
-        if verbose_absolute == 'yes':
-            print '# b stars', len(als_b['XCENTER'])
-            print '# v stars', len(als_v['XCENTER'])
-            print '# y stars', len(als_y['XCENTER'])
+            self.Centers = {}
 
-        # Shifts between files - (imalign values).
-        v_y_dx = 0  # average value of xcenter in v - average value xcenter in y
-        v_y_dy = 0  # average value of ycenter in v - average value ycenter in y
-        b_y_dx = 0  # average value of xcenter in b - average value xcenter in y
-        b_y_dy = 0  # average value of ycenter in b - average value ycenter in y
+            #opening iraf als photometry file
+            with open(iraf_als_file[0]) as f_in:
 
-        v_id = range(len(als_v['ID']))
-        v_xcen = als_v['XCENTER'] + v_y_dx
-        v_ycen = als_v['YCENTER'] + v_y_dy
-        b_id = range(len(als_b['ID']))
-        b_xcen = als_b['XCENTER'] + b_y_dx
-        b_ycen = als_b['YCENTER'] + b_y_dy
-        y_xcen = als_y['XCENTER']
-        y_ycen = als_y['YCENTER']
+                #CONTINUTE HERE
+                # RENAMED als_file to iraf_als_file
+                # RENAMED als_b to iraf_als
 
+                # intertools.islice slices file to only obtain mag line
+                iraf_als = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
+                                      dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
+                                             ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
 
+                n_stars = len(iraf_als_file['ID'])
+                if verbose_absolute:
+                    print '# '+str(filter_)+' stars', n_stars
+
+                self.Centers[filter_] = {}
+                self.Centers[filter_]['ID'] = range(n_stars)
+                self.Centers[filter_]['XCENTER'] = iraf_als['XCENTER'] + shifts[0][filter_]
+                self.Centers[filter_]['YCENTER'] = iraf_als['YCENTER'] + shifts[1][filter_]
+    #
+    #
+    #         v_id = range(len(als_v['ID']))
+    #         v_xcen = iraf_als['XCENTER'] + v_y_dx
+    #         v_ycen = iraf_als['YCENTER'] + v_y_dy
+    #         b_id = range(len(als_b['ID']))
+    #         b_xcen = als_b['XCENTER'] + b_y_dx
+    #         b_ycen = als_b['YCENTER'] + b_y_dy
+    #         y_xcen = als_y['XCENTER']
+    #         y_ycen = als_y['YCENTER']
+    #
+    #     #
+    #     #
+    #     # als_b = glob.glob(path_in_cluster + cluster + '_b.fits.als.1')
+    #     # als_v = glob.glob(path_in_cluster + cluster + '_v.fits.als.1')
+    #     # als_y = glob.glob(path_in_cluster + cluster + '_y.fits.als.1')
+    #     #
+    #     # if verbose == 'yes':
+    #     #     print als_b
+    #     #     print als_v
+    #     #     print als_y
+    #     #
+    #     # with open(als_b[0]) as f_in:
+    #     #     als_b = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
+    #     #                           dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
+    #     #                                  ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
+    #     # with open(als_v[0]) as f_in:
+    #     #     als_v = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
+    #     #                           dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
+    #     #                                  ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
+    #     # with open(als_y[0]) as f_in:
+    #     #     als_y = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
+    #     #                           dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
+    #     #                                  ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
+    #     #
+    #     # if verbose_absolute == 'yes':
+    #     #     print '# b stars', len(als_b['XCENTER'])
+    #     #     print '# v stars', len(als_v['XCENTER'])
+    #     #     print '# y stars', len(als_y['XCENTER'])
+    #
+    #     # Shifts between files - (imalign values).
+    #     v_y_dx = 0  # average value of xcenter in v - average value xcenter in y
+    #     v_y_dy = 0  # average value of ycenter in v - average value ycenter in y
+    #     b_y_dx = 0  # average value of xcenter in b - average value xcenter in y
+    #     b_y_dy = 0  # average value of ycenter in b - average value ycenter in y
+    #
+    #     v_id = range(len(als_v['ID']))
+    #     v_xcen = als_v['XCENTER'] + v_y_dx
+    #     v_ycen = als_v['YCENTER'] + v_y_dy
+    #     b_id = range(len(als_b['ID']))
+    #     b_xcen = als_b['XCENTER'] + b_y_dx
+    #     b_ycen = als_b['YCENTER'] + b_y_dy
+    #     y_xcen = als_y['XCENTER']
+    #     y_ycen = als_y['YCENTER']
+    #
+    #
     def Standardize(self):
-        # TC : make these standard names files - y_standards_names.txt
+        # TODO : make these standard names files - y_standards_names.txt
 
         #non-object oriented version from jupyter notebook
         # !cd $path_in_standards"v"; ls * fits.mag * > v_standards_names.txt
