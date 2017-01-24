@@ -285,38 +285,52 @@ class OpenClusters:
             #                               dtype=[('RAPERT', '<f8'), ('SUM', '<f8'),('AREA', '<f8'),('FLUX', '<f8'),('MAG', '<f8'), ('MERR', '<f8'),('PIER', '<f8'),('PERROR', '<f8')])
 
         def PlotCMD(self, col, mag):
-
-            col1,col2 = col
-
+            """
+            Plots both trilegal and standardized stars.
+            :param self:
+            :param col:
+            :param mag:
+            :return:
+            """
             fig, ax = plt.subplots(1, 3)
             fig.set_size_inches(21, 6.5)
+            fig.suptitle(self.cluster_title + ' Color Magnitude Diagrams', fontsize='16')
 
-            fig.suptitle(cluster_title + ' Color Magnitude Diagrams', fontsize='16')
+            def subplotCMD(n_, x_, x_err_, y_, y_err_, title, xlabel, y_label, color, legend=None, setup=True):
+                if setup:
+                    ax[n_].set_title(self.cluster_title +' : '+ title)
+                    ax[n_].set_xlabel(xlabel)
+                    ax[n_].set_ylabel(y_label)
+                    ax[n_].invert_yaxis()
+                ax[n_].plot(x_, y_, marker='x', markersize='2', linestyle='', label=legend, c=color);
+                if legend != None:
+                    ax[n_].legend(loc='center left', bbox_to_anchor=(1, .5), numpoints=1, markerscale=9, framealpha=1);
 
-            x = Phot['v_MAG'] - Phot['y_MAG']
-            y = Phot['y_MAG']
-            x_tri = Trilegal['v'] - Trilegal['y']
-            y_tri = Trilegal['y']
+            color1,color2 = col
 
-            ax[0].set_title(cluster_title + ' Stars')
-            ax[0].set_xlabel('v - y')
-            ax[0].set_ylabel('y')
-            ax[0].invert_yaxis()
-            ax[0].plot(x, y, marker='x', markersize='2', linestyle='', c='g');
+            color_func = lambda x,y : x - y
+            error_func = lambda x,y : np.sqrt(x**2 + y**2)
 
-            ax[1].set_title('Model TRILEGAL Stars')
-            ax[1].set_xlabel('v - y')
-            ax[1].set_ylabel('y')
-            ax[1].invert_yaxis()
-            ax[1].plot(x_tri, y_tri, marker='x', markersize='2', linestyle='', alpha=.2, c='b');
+            #x and y color mag
+            x = map(color_func, self.Standards[color1]['mag'], self.Standards[color2]['mag'])
+            x_err = map(error_func, self.Standards[color1]['merr'], self.Standards[color2]['merr'])
+            y = self.Standards[mag]['mag']
+            y_err = self.Standards[mag]['merr']
 
-            ax[2].set_title(cluster_title + ' Stars & Model TRILEGAL Stars')
-            ax[2].set_xlabel('v - y')
-            ax[2].set_ylabel('y')
-            ax[2].invert_yaxis()
-            ax[2].plot(x_tri, y_tri, marker='x', markersize='2', linestyle='', alpha=.2, label='TRILEGAL', c='b');
-            ax[2].plot(x, y, marker='x', markersize='2', linestyle='', label=cluster, c='g');
+            #x and y color mag TRILEGAL simulation
+            x_tri = map(color_func, self.Trilegal[color1]['mag'], self.Trilegal[color2]['mag'])
+            x_tri_err = map(error_func, self.Trilegal[color1]['merr'], self.Trilegal[color2]['merr'])
+            y_tri = self.Standards[mag]['mag']
+            y_tri_err = self.Standards[mag]['merr']
 
-            ax[2].legend(loc='center left', bbox_to_anchor=(1, .5), numpoints=1, markerscale=9, framealpha=1);
+            color1 color2 mag
+
+            x_label = color1 + ' - ' + color2
+            y_label = mag
+
+            subplotCMD(0, x, x_err, y, y_err, 'Stars', x_label, y_label, 'g')
+            subplotCMD(1, x_tri, x_tri_err, y_tri, y_tri_err, 'Model TRILEGAL Stars', x_label, y_label, 'b')
+            subplotCMD(2, x, x_err, y, y_err, 'Stars & Model TRILEGAL Stars', x_label, y_label, 'g',legend=self.cluster_title)
+            subplotCMD(2, x_tri, x_tri_err, y_tri, y_tri_err, '', x_label, y_label, 'b', legend='TRILEGAL', setup=False)
 
             fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
