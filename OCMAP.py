@@ -59,10 +59,12 @@ class OpenClusters:
 
     def PositionMatch(self, tol, shifts=None):
         """
+        Matches the positions of data points through multiple images
 
-        :param shifts: array with horizontal and vertical shift of filters
-        :param tol: tolerance in matching files
-        :return:
+        Parameters:
+            self: an OpenClusters object
+            tol: tolerance in matching files
+            shifts: an array containing horizontal and vertical shift of filters
         """
         # UNDER CONSTRUCTION
         # Reading in Open Cluster Field Data Files
@@ -286,51 +288,203 @@ class OpenClusters:
 
         def PlotCMD(self, col, mag):
             """
-            Plots both trilegal and standardized stars.
-            :param self:
-            :param col:
-            :param mag:
-            :return:
+            Plots color-magnitude diagrams of both trilegal and standardized stars.
+
+            Parameters:
+                self: an OpenClusters object
+                col: a two-dimensional array containing the first magnitude m1 and second magnitude m2 within a color m1-m2 i.e. ['v','b']
+                mag: a string corresponding to a magnitude name, i.e. 'v'
+
+            Returns:
+                a color-magnitude diagram.
             """
+
             fig, ax = plt.subplots(1, 3)
             fig.set_size_inches(21, 6.5)
             fig.suptitle(self.cluster_title + ' Color Magnitude Diagrams', fontsize='16')
 
-            def subplotCMD(n_, x_, x_err_, y_, y_err_, title, xlabel, y_label, color, legend=None, setup=True):
+            def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True):
+                '''
+                Creates a subplot for the final CMD plot.
+
+                Parameters:
+                    n_:     an integer corresponding to the subplot number
+                    x_:     a list of x values
+                    x_err_: a float corresponding to the error in x
+                    y_:     a list of y values
+                    y_err_: a float corresponding to the error in y
+                    title:  a string corresponding to the plot title
+                    xlabel: a string corresponding to the x-axis label
+                    ylabel: a string corresponding to the y-axis label
+                    color:  a single-letter string corresponding to the desired plot color
+                    legend: a string corresponding to the legend title (if a legend is desired)
+                    setup:  automatically True. If initial plot is already set up, and you wish to add more subplots,
+                            set to False
+
+                Returns:
+                    a subplot.
+                '''
                 if setup:
                     ax[n_].set_title(self.cluster_title +' : '+ title)
                     ax[n_].set_xlabel(xlabel)
-                    ax[n_].set_ylabel(y_label)
+                    ax[n_].set_ylabel(ylabel)
                     ax[n_].invert_yaxis()
                 ax[n_].plot(x_, y_, marker='x', markersize='2', linestyle='', label=legend, c=color);
                 if legend != None:
                     ax[n_].legend(loc='center left', bbox_to_anchor=(1, .5), numpoints=1, markerscale=9, framealpha=1);
 
+                #TODO x_err and y_err input
+
             color1,color2 = col
 
-            color_func = lambda x,y : x - y
-            error_func = lambda x,y : np.sqrt(x**2 + y**2)
+            color_func = lambda x,y : x - y                         # given two magnitudes, x and y, computes their combined color
+            error_func = lambda x,y : np.sqrt(x**2 + y**2)          # computes the combined error of two values, x and y
 
-            #x and y color mag
+            # x and y for standard CMD
             x = map(color_func, self.Standards[color1]['mag'], self.Standards[color2]['mag'])
             x_err = map(error_func, self.Standards[color1]['merr'], self.Standards[color2]['merr'])
             y = self.Standards[mag]['mag']
             y_err = self.Standards[mag]['merr']
 
-            #x and y color mag TRILEGAL simulation
+            # x and y for TRILEGAL simulation CMD
             x_tri = map(color_func, self.Trilegal[color1]['mag'], self.Trilegal[color2]['mag'])
             x_tri_err = map(error_func, self.Trilegal[color1]['merr'], self.Trilegal[color2]['merr'])
             y_tri = self.Standards[mag]['mag']
             y_tri_err = self.Standards[mag]['merr']
 
-            color1 color2 mag
-
+            #color1 color2 mag
             x_label = color1 + ' - ' + color2
             y_label = mag
 
-            subplotCMD(0, x, x_err, y, y_err, 'Stars', x_label, y_label, 'g')
-            subplotCMD(1, x_tri, x_tri_err, y_tri, y_tri_err, 'Model TRILEGAL Stars', x_label, y_label, 'b')
-            subplotCMD(2, x, x_err, y, y_err, 'Stars & Model TRILEGAL Stars', x_label, y_label, 'g',legend=self.cluster_title)
-            subplotCMD(2, x_tri, x_tri_err, y_tri, y_tri_err, '', x_label, y_label, 'b', legend='TRILEGAL', setup=False)
+            # Final plot
+            subplotCMD(0, x, y, 'Stars', x_label, y_label, 'g')
+            subplotCMD(1, x_tri, y_tri, 'Model TRILEGAL Stars', x_label, y_label, 'b')
+            subplotCMD(2, x, y, 'Stars & Model TRILEGAL Stars', x_label, y_label, 'g',legend=self.cluster_title)
+            subplotCMD(2, x_tri, y_tri, '', x_label, y_label, 'b', legend='TRILEGAL', setup=False)
 
             fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        def PlotPositions(self, markers, colors, xlim=None,ylim=None):
+            """
+            Plots object positions
+
+            Parameters:
+                self: an OpenClusters object
+            """
+            # Check that stars were matched correctly, by visual inspection.
+
+            fig, ax = plt.subplots(2, 2)
+            fig.set_size_inches(14, 6.5 * 2)
+            fig.suptitle(self.cluster_title + ' Stars XCENTER vs. YCENTER', fontsize='16')
+
+            def subplot_pos_setup(n_, m_, title, xlabel, ylabel, xlim, ylim):
+                '''
+                 subplot for the final position plot.
+
+                Parameters:
+                    n_:     an integer corresponding to the x subplot number
+                    m_:     an integer corresponding to the y subplot number
+                    title:  a string corresponding to the plot title
+                    xlabel: a string corresponding to the x-axis label
+                    ylabel: a string corresponding to the y-axis label
+                    ylim:   a two dimensional array corresponding ot the y-axis limits, i.e. [0,400]
+                '''
+                ax[n_, m_].set_title(title)
+                ax[n_, m_].set_xlabel(xlabel)
+                ax[n_, m_].set_ylabel(ylabel)
+                ax[n_, m_].set_xlim(xlim[0], xlim[1])
+                ax[n_, m_].set_ylim(ylim[0], ylim[1])
+
+            def subplot_pos(n_, m_, x_, y_, marker, color, label=None):
+                '''
+                Creates a subplot for the final position plot.
+
+                Parameters:
+                    n_:     an integer corresponding to the x subplot number
+                    m_:     an integer corresponding to the y subplot number
+                    x_:     a list of x values
+                    x_err_: a float corresponding to the error in x
+                    y_:     a list of y values
+                    y_err_: a float corresponding to the error in y
+                    legend: a string corresponding to the legend title (if a legend is desired)
+
+                Returns:
+                    plot and legend commands for a subplot.
+                '''
+                ax[n_, m_].plot(x_, y_, marker=marker, markersize='2', linestyle='', c=color, label=label);
+                if label != None:
+                    ax[n_, m_].legend(loc='center left', bbox_to_anchor=(1, .5), numpoints=1, markerscale=9, framealpha=1);
+
+            xlabel,ylabel = ['x pixel position','y pixel position']
+
+            if xlim == None:
+                xlim = [self.Phot['xcenter'].min()-20,self.Phot['xcenter'].max() + 20]
+            if ylim == None:
+                ylim = [self.Phot['ycenter'].min()-20,self.Phot['ycenter'].max() + 20]
+            #TODO self.Phot has xcenter and ycenter
+
+
+            subplot_pos_setup(0, 0, 'All Stars / Selection of Image', xlabel, ylabel, xlim, ylim)
+            subplot_pos_setup(0, 1, 'Natched Stars / Selection of Image', xlabel, ylabel, xlim, ylim)
+            subplot_pos_setup(1, 0, 'All Stars / Complete Image', xlabel, ylabel, xlim, ylim)
+            subplot_pos_setup(1, 1, 'Matched Stars / Complete Image', xlabel, ylabel, xlim, ylim)
+
+            plotvalue = [0, 1]
+
+            # Check that the number of filters equals the number of markers
+            # if len(self.filters) != len(self.markers):
+            #raise ValueError
+            # else:
+
+
+            for plotval in plotvalue:
+                # Iterate through each subplot and add data points
+
+                ax[plotval, 0].set_xlabel('X PIX')
+                ax[plotval, 0].set_ylabel('Y PIX')
+
+                for filt_, marker_, color_ in zip(self.filters, markers, colors):
+                    #TODO x_ =
+                    #TODO y_ =
+                    subplot_pos(plotval, 0, x_, y_, marker_, color_, label= filt_ + ' filter')
+                    #TODO x_ =
+                    #TODO y_ =
+                    subplot_pos(plotval, 1, x_, y_, marker_, color_, label=filt_ + ' filter')
+
+                # ax[plotval, 0].plot(als_b['XCENTER'], als_b['YCENTER'], marker='o', markersize='10', linestyle='',
+                #                     alpha=.2, label='b filter');
+                # ax[plotval, 0].plot(als_v['XCENTER'], als_v['YCENTER'], marker='x', markersize='10', linestyle='',
+                #                     label='v filter');
+                # ax[plotval, 0].plot(als_y['XCENTER'], als_y['YCENTER'], marker='+', markersize='10', linestyle='',
+                #                     label='y filter');
+
+                ax[plotval, 1].set_xlabel('X PIX')
+                ax[plotval, 1].set_ylabel('Y PIX')
+                ax[plotval, 1].plot(Phot['b_XCENTER'], Phot['b_YCENTER'], marker='o', markersize='10', linestyle='',
+                                    alpha=.2, label='b filter');
+                ax[plotval, 1].plot(Phot['v_XCENTER'], Phot['v_YCENTER'], marker='x', markersize='10', linestyle='',
+                                    label='v filter');
+                ax[plotval, 1].plot(Phot['y_XCENTER'], Phot['y_YCENTER'], marker='+', markersize='10', linestyle='',
+                                    label='y filter');
+                ax[0, 1].legend(loc='center left', bbox_to_anchor=(1.1, .5), numpoints=1);
+            fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_selectstars.jpg', bbox_inches='tight')
