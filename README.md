@@ -1,4 +1,5 @@
 # OCMAP
+# Open Cluster Membership Analysis Program
 
 OCMAP is an open cluster membership analysis program built for sloan and stromgren photometry. It can match stars across multiple images, plot CMDs, determine members of a specific open cluster and standardize magnitudes.
 
