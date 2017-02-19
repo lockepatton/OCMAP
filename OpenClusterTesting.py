@@ -18,6 +18,8 @@ Kronberger5 = oc(cluster, cluster_title, [filters,image_names],
 
 Kronberger5.PositionMatch(tol=1, image_names_file=image_names_file, shifts=shifts)
 
+print Kronberger5.StarMatch
+print Kronberger5.StarMatch_extra
 
 #
 # image_names = np.genfromtxt(path_in_cluster + image_names_file, dtype=None)
