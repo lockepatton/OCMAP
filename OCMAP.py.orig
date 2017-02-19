@@ -27,7 +27,11 @@ class OpenClusters:
         verbose_absolute:  Boolean that lets OCMAP know whether or not to print important information.
         """
 
+<<<<<<< HEAD
+
+=======
         #details about cluster under consideration
+>>>>>>> f8f643cd14ddb02bb495591ce5c98dcbba6cb905
         self.cluster = cluster
         self.cluster_title = cluster_title
 
@@ -385,8 +389,15 @@ class OpenClusters:
 
 
 
+=======
+>>>>>>> f8f643cd14ddb02bb495591ce5c98dcbba6cb905
 
 
+
+
+
+
+<<<<<<< HEAD
 
 
 
@@ -512,7 +523,7 @@ class OpenClusters:
                                     label='y filter');
                 ax[0, 1].legend(loc='center left', bbox_to_anchor=(1.1, .5), numpoints=1);
             fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_selectstars.jpg', bbox_inches='tight')
-            
+=======
     # def Standardize(self):
     #     # TODO : make these standard names files - y_standards_names.txt
     #
