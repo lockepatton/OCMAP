@@ -1,37 +1,117 @@
 OCMAP Variables
 ~~~~~~~~~~~~~~~~~
-Preliminary documentation for the Open Cluster Membership Analysis Program.
+Preliminary documentation for the Open Cluster Membership Analysis Program
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    def __init__(self, cluster, cluster_title, filters,
+def __init__(self, cluster, cluster_title, filters,
                  path_in_cluster, path_in_standards, path_out,
                  t=None, verbose=1, verbose_absolute=1):
         """
         Parameters:
-	-----------
-        cluster: string corresponding to the name of a cluster inside files
-        cluster_title: string corresponding to the desired plot titles.
-        path_in_cluster: string corresponding to the location of cluster .als files
+       	cluster: 	   string corresponding to the name of a cluster inside files
+        cluster_title:     string corresponding to the desired plot titles.
+        path_in_cluster:   string corresponding to the location of cluster .als files
         path_in_standards: string corresponding to the location of standard .mag files
         filters: array-like. contains strings corresponding to the filters used. example is ['v', 'b', 'y']
-        path_out: string corresponding to the desired saving location for output files and plots. 
-        verbose: Boolean that lets OCMAP know whether or not to print extra information.
-        verbose_absolute: Boolean that lets OCMAP know whether or not to print important information.
+        path_out: 	   string corresponding to the desired saving location for output files and plots. 
+        verbose: 	   Boolean that lets OCMAP know whether or not to print extra information.
+        verbose_absolute:  Boolean that lets OCMAP know whether or not to print important information.
         """
 
-    def PositionMatch(self, tol, shifts=None):
+def PositionMatch(self, tol, shifts=None):
         """
         Matches the positions of data points across multiple images and filters.
 
         Parameters:
-	-----------
-            self: an OpenClusters object
-            tol: tolerance in matching files
-            shifts: an array containing horizontal and vertical shift of filters
+        self:   an OpenClusters object
+        tol:    tolerance in matching files
+        shifts: an array containing horizontal and vertical shift of filters
         """
 
-    def Standardize(self):
+def Standardize(self):
 	“””
 	TODO
 	Parameters:
+	self: an OpenClusters object
 	“””
+
+def PlotCMD(self, col, mag):
+	"""
+        Plots color-magnitude diagrams of both trilegal and standardized stars.
+
+        Parameters:
+	self: an OpenClusters object
+        col:  a two-dimensional array containing the first magnitude m1 and second magnitude m2 within a color m1-m2 i.e. ['v','b']
+        mag:  a string corresponding to a magnitude name, i.e. 'v'
+
+	Returns: 
+        a color-magnitude diagram.
+        """
+
+	# Inside PlotCMD
+	def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True):
+        	“””
+        	Creates a subplot for the final CMD plot.
+
+        	Parameters:
+         	n_:     an integer corresponding to the subplot number
+             	x_:     a list of x values
+               	x_err_: a float corresponding to the error in x
+               	y_:     a list of y values
+               	y_err_: a float corresponding to the error in y
+               	title:  a string corresponding to the plot title
+               	xlabel: a string corresponding to the x-axis label
+               	ylabel: a string corresponding to the y-axis label
+               	color:  a single-letter string corresponding to the desired plot color
+               	legend: a string corresponding to the legend title (if a legend is desired)
+               	setup:  automatically True. If initial plot is already set up, and you wish to add more subplots, set to False
+
+      		Returns:
+              	a subplot.
+      		“””
+
+def PlotPositions(self, markers, colors, xlim=None,ylim=None):
+	"""
+        Plots cluster spatial positions.
+
+        Parameters:
+        self: 	 an OpenClusters object
+	markers: an array corresponding to the desired marker for each cluster. example [“.”, “o”]
+	colors:  an array corresponding to the desired color of each marker for each cluster
+	xlim: 	 a two dimensional array corresponding to the x-axis limits (if limits are desired). Initially set to None. example: [0,400]
+	ylim: 	 a two dimensional array corresponding to the y-axis limits. Initially set to None. example: [0,400]
+	"""
+
+	# Inside PlotPositions
+        def subplot_pos_setup(n_, m_, title, xlabel, ylabel, xlim, ylim):
+        	“””
+                subplot for the final position plot.
+
+                Parameters:
+                n_:     an integer corresponding to the x subplot number
+                m_:     an integer corresponding to the y subplot number
+                title:  a string corresponding to the plot title
+                xlabel: a string corresponding to the x-axis label
+                ylabel: a string corresponding to the y-axis label
+		xlim: 	a two dimensional array corresponding to the x-axis limits, i.e. [0,400]
+                ylim: 	a two dimensional array corresponding to the y-axis limits, i.e. [0,400]
+                “””
+
+       	def subplot_pos(n_, m_, x_, y_, marker, color, label=None):
+            	“””
+                Creates a subplot for the final position plot.
+
+                Parameters:
+                n_:     an integer corresponding to the x subplot number
+                m_:     an integer corresponding to the y subplot number
+                x_:     a list of x values
+                x_err_: a float corresponding to the error in x
+                y_:     a list of y values
+                y_err_: a float corresponding to the error in y
+                legend: a string corresponding to the legend title (if a legend is desired)
+
+                Returns:
+               plot and legend commands for a subplot.
+                “””
+
 

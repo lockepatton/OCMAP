@@ -16,25 +16,17 @@ class OpenClusters:
                  path_in_cluster, path_in_standards, path_out,
                  t=None, verbose=1, verbose_absolute=1):
         """
-        Parameters
-        ----------
-        cluster : string
-            Inside file names
-        cluster_title : string
-            For plot titles
-        path_in_cluster : sting
-            location of cluster .als files
-        path_in_standards : string
-            location of standard .mag files
-        filters : array-like
-            example is ['v', 'b', 'y']
-        path_out : basestring
-            Files and plots saved here
-        verbose : Boolean
-            print extra info?
-        verbose_absolute : Boolean
-            print important info?
+        Parameters:
+       	cluster: 	       string corresponding to the name of a cluster inside files
+        cluster_title:     string corresponding to the desired plot titles.
+        path_in_cluster:   string corresponding to the location of cluster .als files
+        path_in_standards: string corresponding to the location of standard .mag files
+        filters:           array-like. contains strings corresponding to the filters used. example is ['v', 'b', 'y']
+        path_out: 	       string corresponding to the desired saving location for output files and plots.
+        verbose: 	       Boolean that lets OCMAP know whether or not to print extra information.
+        verbose_absolute:  Boolean that lets OCMAP know whether or not to print important information.
         """
+
 
         self.cluster = cluster
         self.cluster_title = cluster_title
@@ -59,12 +51,12 @@ class OpenClusters:
 
     def PositionMatch(self, tol, shifts=None):
         """
-        Matches the positions of data points through multiple images
+        Matches the positions of data points across multiple images and filters.
 
         Parameters:
-            self: an OpenClusters object
-            tol: tolerance in matching files
-            shifts: an array containing horizontal and vertical shift of filters
+        self:   an OpenClusters object
+        tol:    tolerance in matching files
+        shifts: an array containing horizontal and vertical shift of filters
         """
         # UNDER CONSTRUCTION
         # Reading in Open Cluster Field Data Files
@@ -161,6 +153,11 @@ class OpenClusters:
     #
     #
     def Standardize(self):
+        """
+        TODO
+        Parameters:
+        self: an OpenClusters object
+        """
         # TODO : make these standard names files - y_standards_names.txt
 
         #non-object oriented version from jupyter notebook
@@ -291,39 +288,37 @@ class OpenClusters:
             Plots color-magnitude diagrams of both trilegal and standardized stars.
 
             Parameters:
-                self: an OpenClusters object
-                col: a two-dimensional array containing the first magnitude m1 and second magnitude m2 within a color m1-m2 i.e. ['v','b']
-                mag: a string corresponding to a magnitude name, i.e. 'v'
+	        self: an OpenClusters object
+            col:  a two-dimensional array containing the first magnitude m1 and second magnitude m2 within a color m1-m2 i.e. ['v','b']
+            mag:  a string corresponding to a magnitude name, i.e. 'v'
 
-            Returns:
-                a color-magnitude diagram.
+	        Returns:
+            a color-magnitude diagram.
             """
-
             fig, ax = plt.subplots(1, 3)
             fig.set_size_inches(21, 6.5)
             fig.suptitle(self.cluster_title + ' Color Magnitude Diagrams', fontsize='16')
 
             def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True):
-                '''
-                Creates a subplot for the final CMD plot.
+                """
+        	    Creates a subplot for the final CMD plot.
 
-                Parameters:
-                    n_:     an integer corresponding to the subplot number
-                    x_:     a list of x values
-                    x_err_: a float corresponding to the error in x
-                    y_:     a list of y values
-                    y_err_: a float corresponding to the error in y
-                    title:  a string corresponding to the plot title
-                    xlabel: a string corresponding to the x-axis label
-                    ylabel: a string corresponding to the y-axis label
-                    color:  a single-letter string corresponding to the desired plot color
-                    legend: a string corresponding to the legend title (if a legend is desired)
-                    setup:  automatically True. If initial plot is already set up, and you wish to add more subplots,
-                            set to False
+        	    Parameters:
+         	    n_:     an integer corresponding to the subplot number
+             	x_:     a list of x values
+               	x_err_: a float corresponding to the error in x
+               	y_:     a list of y values
+               	y_err_: a float corresponding to the error in y
+               	title:  a string corresponding to the plot title
+               	xlabel: a string corresponding to the x-axis label
+               	ylabel: a string corresponding to the y-axis label
+               	color:  a single-letter string corresponding to the desired plot color
+               	legend: a string corresponding to the legend title (if a legend is desired)
+               	setup:  automatically True. If initial plot is already set up, and you wish to add more subplots, set to False
 
-                Returns:
-                    a subplot.
-                '''
+      		    Returns:
+              	a subplot.
+      		    """
                 if setup:
                     ax[n_].set_title(self.cluster_title +' : '+ title)
                     ax[n_].set_xlabel(xlabel)
@@ -386,11 +381,18 @@ class OpenClusters:
 
         def PlotPositions(self, markers, colors, xlim=None,ylim=None):
             """
-            Plots object positions
+            Plots cluster spatial positions.
 
             Parameters:
-                self: an OpenClusters object
-            """
+            self: 	 an OpenClusters object
+	        markers: an array corresponding to the desired marker for each cluster. example [“.”, “o”]
+	        colors:  an array corresponding to the desired color of each marker for each cluster
+	        xlim: 	 a two dimensional array corresponding to the x-axis limits (if limits are desired).
+	                 Initially set to None. example: [0,400]
+	        ylim: 	 a two dimensional array corresponding to the y-axis limits (if limits are desired).
+	                 Initially set to None. example: [0,400]
+	        """
+
             # Check that stars were matched correctly, by visual inspection.
 
             fig, ax = plt.subplots(2, 2)
@@ -398,17 +400,19 @@ class OpenClusters:
             fig.suptitle(self.cluster_title + ' Stars XCENTER vs. YCENTER', fontsize='16')
 
             def subplot_pos_setup(n_, m_, title, xlabel, ylabel, xlim, ylim):
-                '''
-                 subplot for the final position plot.
+                """
+                subplot for the final position plot.
 
                 Parameters:
-                    n_:     an integer corresponding to the x subplot number
-                    m_:     an integer corresponding to the y subplot number
-                    title:  a string corresponding to the plot title
-                    xlabel: a string corresponding to the x-axis label
-                    ylabel: a string corresponding to the y-axis label
-                    ylim:   a two dimensional array corresponding ot the y-axis limits, i.e. [0,400]
-                '''
+                n_:     an integer corresponding to the x subplot number
+                m_:     an integer corresponding to the y subplot number
+                title:  a string corresponding to the plot title
+                xlabel: a string corresponding to the x-axis label
+                ylabel: a string corresponding to the y-axis label
+		        xlim: 	a two dimensional array corresponding to the x-axis limits, i.e. [0,400]
+                ylim: 	a two dimensional array corresponding to the y-axis limits, i.e. [0,400]
+                """
+
                 ax[n_, m_].set_title(title)
                 ax[n_, m_].set_xlabel(xlabel)
                 ax[n_, m_].set_ylabel(ylabel)
@@ -416,21 +420,22 @@ class OpenClusters:
                 ax[n_, m_].set_ylim(ylim[0], ylim[1])
 
             def subplot_pos(n_, m_, x_, y_, marker, color, label=None):
-                '''
+                """
                 Creates a subplot for the final position plot.
 
                 Parameters:
-                    n_:     an integer corresponding to the x subplot number
-                    m_:     an integer corresponding to the y subplot number
-                    x_:     a list of x values
-                    x_err_: a float corresponding to the error in x
-                    y_:     a list of y values
-                    y_err_: a float corresponding to the error in y
-                    legend: a string corresponding to the legend title (if a legend is desired)
+                n_:     an integer corresponding to the x subplot number
+                m_:     an integer corresponding to the y subplot number
+                x_:     a list of x values
+                x_err_: a float corresponding to the error in x
+                y_:     a list of y values
+                y_err_: a float corresponding to the error in y
+                legend: a string corresponding to the legend title (if a legend is desired)
 
                 Returns:
-                    plot and legend commands for a subplot.
-                '''
+                plot and legend commands for a subplot.
+                """
+
                 ax[n_, m_].plot(x_, y_, marker=marker, markersize='2', linestyle='', c=color, label=label);
                 if label != None:
                     ax[n_, m_].legend(loc='center left', bbox_to_anchor=(1, .5), numpoints=1, markerscale=9, framealpha=1);
