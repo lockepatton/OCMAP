@@ -4,7 +4,6 @@
     <list default="true" id="4aeebcfe-8b40-4c06-8ebf-179f0dbb1b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCMAP.py" afterPath="$PROJECT_DIR$/OCMAP.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OpenClusterKronberger5/als_files.dat" afterPath="$PROJECT_DIR$/OpenClusterKronberger5/als_files.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OpenClusterTesting.py" afterPath="$PROJECT_DIR$/OpenClusterTesting.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,10 +22,15 @@
       <file leaf-file-name="OCMAP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OCMAP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="99" column="35" lean-forward="false" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="35" />
               <folding>
-                <element signature="e#42#60#0" expanded="true" />
+                <element signature="e#43#61#0" expanded="true" />
+                <element signature="e#422#2154#0" expanded="false" />
+                <element signature="e#2186#2190#0" expanded="false" />
+                <element signature="e#7357#15099#0" expanded="false" />
+                <element signature="e#15142#18683#0" expanded="false" />
+                <element signature="e#18760#24252#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -35,8 +39,8 @@
       <file leaf-file-name="OpenClusterTesting.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="18" column="73" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="73" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -326,7 +330,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -361,7 +365,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -380,7 +386,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#60#0" expanded="true" />
+            <element signature="e#43#61#0" expanded="true" />
+            <element signature="e#422#2154#0" expanded="false" />
+            <element signature="e#2186#2190#0" expanded="false" />
+            <element signature="e#7357#15099#0" expanded="false" />
+            <element signature="e#15142#18683#0" expanded="false" />
+            <element signature="e#18760#24252#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -420,7 +431,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#42#60#0" expanded="true" />
+            <element signature="e#43#61#0" expanded="true" />
+            <element signature="e#422#2154#0" expanded="false" />
+            <element signature="e#2186#2190#0" expanded="false" />
+            <element signature="e#7357#15099#0" expanded="false" />
+            <element signature="e#15142#18683#0" expanded="false" />
+            <element signature="e#18760#24252#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -445,8 +461,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="18" column="73" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="73" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
@@ -455,10 +471,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OCMAP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="99" column="35" lean-forward="false" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="35" />
           <folding>
-            <element signature="e#42#60#0" expanded="true" />
+            <element signature="e#43#61#0" expanded="true" />
+            <element signature="e#422#2154#0" expanded="false" />
+            <element signature="e#2186#2190#0" expanded="false" />
+            <element signature="e#7357#15099#0" expanded="false" />
+            <element signature="e#15142#18683#0" expanded="false" />
+            <element signature="e#18760#24252#0" expanded="false" />
           </folding>
         </state>
       </provider>
