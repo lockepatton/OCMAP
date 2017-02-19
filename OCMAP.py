@@ -12,7 +12,7 @@ class OpenClusters:
     """
     Container for open clusters.
     """
-    def __init__(self, cluster, cluster_title, filters,
+    def __init__(self, cluster, cluster_title, filters_images,
                  path_in_cluster, path_in_standards, path_out,
                  t=None, verbose=True, verbose_absolute=True):
         """
@@ -21,7 +21,7 @@ class OpenClusters:
         cluster_title:     string corresponding to the desired plot titles.
         path_in_cluster:   string corresponding to the location of cluster .als files
         path_in_standards: string corresponding to the location of standard .mag files
-        filters:           array-like. contains strings corresponding to the filters used. example is ['v', 'b', 'y']
+        filters_images:    2D array-like. contains strings corresponding to the filters used and their corresponding image base names.
         path_out: 	       string corresponding to the desired saving location for output files and plots.
         verbose: 	       Boolean that lets OCMAP know whether or not to print extra information.
         verbose_absolute:  Boolean that lets OCMAP know whether or not to print important information.
@@ -30,9 +30,6 @@ class OpenClusters:
         #details about cluster under consideration
         self.cluster = cluster
         self.cluster_title = cluster_title
-
-        #array with string names of all filters
-        self.filters = filters
 
         #paths for reading in open cluster magnitude files, standard star magnitude files and output files
         self.path_in_cluster = path_in_cluster
@@ -52,6 +49,37 @@ class OpenClusters:
         #printing output time in files
         if verbose_absolute:
             print 'output time seen in file names:', self.t
+
+        #dictionary to contain magnitudes and images names, etc
+        self.Centers = {}
+
+        #reading in magnitudes from filters and image array
+        self.filters, self.image_names = filters_images
+
+        for filter_, image_name_ in zip(self.filters,self.image_names):
+            # building readin command
+            iraf_als_file = glob.glob(self.path_in_cluster + image_name_)
+
+            # printing filters, image name, iraf_als_file if verbose
+            if self.verbose:
+                print "filter,image:", filter_, image_name_
+                print "iraf_als_file:", iraf_als_file
+
+            # opening iraf als photometry file
+            with open(iraf_als_file[0]) as f_in:
+                # intertools.islice slices file to only obtain mag line
+                iraf_als = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
+                                         dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
+                                                ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
+
+            n_stars = len(iraf_als['ID'])
+            if self.verbose_absolute:
+                print '# ' + str(filter_) + ' stars', n_stars
+
+            self.Centers[filter_] = {}
+            self.Centers[filter_]['ID'] = np.array(range(n_stars))
+            self.Centers[filter_]['XCENTER'] = iraf_als['XCENTER']
+            self.Centers[filter_]['YCENTER'] = iraf_als['YCENTER']
 
     def plotXY(self):
         pass
@@ -73,107 +101,32 @@ class OpenClusters:
         # Reading in Open Cluster Field Data Files
         # For example: Turner11_dao_b.fits.als.1
 
-        self.Centers = {}
+        #Determining the shifts for each filter in each filter in x and y direction
 
         #default shifts are 0s
         if shifts == None:
-            shifts = [np.zeros(len(filters)),np.zeros(len(filters))]
-
-        # read in IRAF als files for matching
-        image_names = np.genfromtxt(self.path_in_cluster + image_names_file, dtype=None)
+            self.shifts = []
+            for filter_ in self.filters:
+                self.shifts.append([0., 0.])
+        else:
+            self.shifts = shifts
 
         if self.verbose:
-            print 'shifts:', shifts
-            print 'images:', image_names
+            print 'filters:', self.filters
+            print 'images:', self.image_names
+            print 'shifts:', self.shifts
 
-        for filter_, image_name_ in zip(self.filters,image_names):
+        for it_,(filter_, image_name_) in enumerate(zip(self.filters, self.image_names)):
 
-            #building readin command
-            iraf_als_file = glob.glob(self.path_in_cluster + image_name_)
-            print iraf_als_file
+            self.Centers[filter_]['XCENTER_SHIFTED'] = self.Centers[filter_]['XCENTER'] + self.shifts[it_][0]
+            self.Centers[filter_]['YCENTER_SHIFTED'] = self.Centers[filter_]['YCENTER'] + self.shifts[it_][1]
 
-            #printing filters and image name if verbose
+
+            #printing filters, image name, iraf_als_file if verbose
             if self.verbose:
-                print "filter,image:", filter_, image_name_
+                print "filter, image:", filter_, image_name_
+                print 'x, y shift:', self.shifts[it_]
 
-            # opening iraf als photometry file
-            with open(iraf_als_file) as f_in:
-                print f_in
-
-                # RENAMED als_file to iraf_als_file
-                # RENAMED als_b to iraf_als
-
-                # intertools.islice slices file to only obtain mag line
-                iraf_als = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                         dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                                ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
-
-                print iraf_als
-
-                n_stars = len(iraf_als_file['ID'])
-                if verbose_absolute:
-                    print '# '+str(filter_)+' stars', n_stars
-
-                self.Centers[filter_] = {}
-                self.Centers[filter_]['ID'] = range(n_stars)
-                self.Centers[filter_]['XCENTER'] = iraf_als['XCENTER'] + shifts[0][filter_]
-                self.Centers[filter_]['YCENTER'] = iraf_als['YCENTER'] + shifts[1][filter_]
-
-
-        """
-        Previous Code:
-
-        v_id = range(len(als_v['ID']))
-        v_xcen = iraf_als['XCENTER'] + v_y_dx
-        v_ycen = iraf_als['YCENTER'] + v_y_dy
-        b_id = range(len(als_b['ID']))
-        b_xcen = als_b['XCENTER'] + b_y_dx
-        b_ycen = als_b['YCENTER'] + b_y_dy
-        y_xcen = als_y['XCENTER']
-        y_ycen = als_y['YCENTER']
-
-        als_b = glob.glob(path_in_cluster + cluster + '_b.fits.als.1')
-        als_v = glob.glob(path_in_cluster + cluster + '_v.fits.als.1')
-        als_y = glob.glob(path_in_cluster + cluster + '_y.fits.als.1')
-
-        if verbose == 'yes':
-            print als_b
-            print als_v
-            print als_y
-
-        with open(als_b[0]) as f_in:
-            als_b = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                  dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                         ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
-        with open(als_v[0]) as f_in:
-            als_v = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                  dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                         ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
-        with open(als_y[0]) as f_in:
-            als_y = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
-                                  dtype=[('ID', '<f8'), ('XCENTER', '<f8'), ('YCENTER', '<f8'), ('MAG', '<f8'),
-                                         ('MERR', '<f8'), ('MSKY', '<f8'), ('NITER', '<f8')])
-
-        if verbose_absolute == 'yes':
-            print '# b stars', len(als_b['XCENTER'])
-            print '# v stars', len(als_v['XCENTER'])
-            print '# y stars', len(als_y['XCENTER'])
-
-        # Shifts between files - (imalign values).
-        v_y_dx = 0  # average value of xcenter in v - average value xcenter in y
-        v_y_dy = 0  # average value of ycenter in v - average value ycenter in y
-        b_y_dx = 0  # average value of xcenter in b - average value xcenter in y
-        b_y_dy = 0  # average value of ycenter in b - average value ycenter in y
-
-        v_id = range(len(als_v['ID']))
-        v_xcen = als_v['XCENTER'] + v_y_dx
-        v_ycen = als_v['YCENTER'] + v_y_dy
-        b_id = range(len(als_b['ID']))
-        b_xcen = als_b['XCENTER'] + b_y_dx
-        b_ycen = als_b['YCENTER'] + b_y_dy
-        y_xcen = als_y['XCENTER']
-        y_ycen = als_y['YCENTER']
-        """
 
     def Standardize(self):
         """
