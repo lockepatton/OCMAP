@@ -1,0 +1,37 @@
+OCMAP Variables
+~~~~~~~~~~~~~~~~~
+Preliminary documentation for the Open Cluster Membership Analysis Program.
+
+    def __init__(self, cluster, cluster_title, filters,
+                 path_in_cluster, path_in_standards, path_out,
+                 t=None, verbose=1, verbose_absolute=1):
+        """
+        Parameters:
+	-----------
+        cluster: string corresponding to the name of a cluster inside files
+        cluster_title: string corresponding to the desired plot titles.
+        path_in_cluster: string corresponding to the location of cluster .als files
+        path_in_standards: string corresponding to the location of standard .mag files
+        filters: array-like. contains strings corresponding to the filters used. example is ['v', 'b', 'y']
+        path_out: string corresponding to the desired saving location for output files and plots. 
+        verbose: Boolean that lets OCMAP know whether or not to print extra information.
+        verbose_absolute: Boolean that lets OCMAP know whether or not to print important information.
+        """
+
+    def PositionMatch(self, tol, shifts=None):
+        """
+        Matches the positions of data points across multiple images and filters.
+
+        Parameters:
+	-----------
+            self: an OpenClusters object
+            tol: tolerance in matching files
+            shifts: an array containing horizontal and vertical shift of filters
+        """
+
+    def Standardize(self):
+	“””
+	TODO
+	Parameters:
+	“””
+
