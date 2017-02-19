@@ -14,7 +14,7 @@ class OpenClusters:
     """
     def __init__(self, cluster, cluster_title, filters,
                  path_in_cluster, path_in_standards, path_out,
-                 t=None, verbose=1, verbose_absolute=1):
+                 t=None, verbose=True, verbose_absolute=True):
         """
         Parameters
         ----------
