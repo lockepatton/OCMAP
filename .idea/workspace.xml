@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4aeebcfe-8b40-4c06-8ebf-179f0dbb1b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CleanCluster_Stromgren_v7.ipynb" afterPath="$PROJECT_DIR$/CleanCluster_Stromgren_v7.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCMAP.py" afterPath="$PROJECT_DIR$/OCMAP.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OpenClusterTesting.py" afterPath="$PROJECT_DIR$/OpenClusterTesting.py" />
     </list>
@@ -20,26 +19,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OCMAP.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OCMAP.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OCMAP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="114" column="21" lean-forward="false" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="21" />
+            <state relative-caret-position="195">
+              <caret line="237" column="50" lean-forward="true" selection-start-line="237" selection-start-column="50" selection-end-line="237" selection-end-column="50" />
               <folding>
                 <element signature="e#43#61#0" expanded="true" />
-                <element signature="e#14742#22484#0" expanded="false" />
-                <element signature="e#22527#26068#0" expanded="false" />
-                <element signature="e#26145#31637#0" expanded="false" />
+                <element signature="e#14145#21887#0" expanded="false" />
+                <element signature="e#21930#25471#0" expanded="false" />
+                <element signature="e#25548#31040#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OpenClusterTesting.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OpenClusterTesting.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+            <state relative-caret-position="255">
+              <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -91,6 +90,8 @@
       <find>print</find>
       <find>iraf_als</find>
       <find>baseMag</find>
+      <find>'MAG'</find>
+      <find>StarMatch_extra</find>
     </findStrings>
     <replaceStrings>
       <replace>magBase</replace>
@@ -103,8 +104,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Build_Testbed.py" />
-        <option value="$PROJECT_DIR$/OpenClusterTesting.py" />
         <option value="$PROJECT_DIR$/OCMAP.py" />
+        <option value="$PROJECT_DIR$/OpenClusterTesting.py" />
       </list>
     </option>
   </component>
@@ -373,7 +374,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18529412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39117646" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -430,9 +431,9 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#43#61#0" expanded="true" />
-            <element signature="e#14742#22484#0" expanded="false" />
-            <element signature="e#22527#26068#0" expanded="false" />
-            <element signature="e#26145#31637#0" expanded="false" />
+            <element signature="e#14145#21887#0" expanded="false" />
+            <element signature="e#21930#25471#0" expanded="false" />
+            <element signature="e#25548#31040#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -473,9 +474,9 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#43#61#0" expanded="true" />
-            <element signature="e#14742#22484#0" expanded="false" />
-            <element signature="e#22527#26068#0" expanded="false" />
-            <element signature="e#26145#31637#0" expanded="false" />
+            <element signature="e#14145#21887#0" expanded="false" />
+            <element signature="e#21930#25471#0" expanded="false" />
+            <element signature="e#25548#31040#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -506,25 +507,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
+    <entry file="file://$PROJECT_DIR$/OCMAP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        <state relative-caret-position="195">
+          <caret line="237" column="50" lean-forward="true" selection-start-line="237" selection-start-column="50" selection-end-line="237" selection-end-column="50" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#43#61#0" expanded="true" />
+            <element signature="e#14145#21887#0" expanded="false" />
+            <element signature="e#21930#25471#0" expanded="false" />
+            <element signature="e#25548#31040#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OCMAP.py">
+    <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="114" column="21" lean-forward="false" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="21" />
+        <state relative-caret-position="255">
+          <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
-            <element signature="e#14742#22484#0" expanded="false" />
-            <element signature="e#22527#26068#0" expanded="false" />
-            <element signature="e#26145#31637#0" expanded="false" />
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

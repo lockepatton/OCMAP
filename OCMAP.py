@@ -72,6 +72,9 @@ class OpenClusters:
             n_stars = len(iraf_als['ID'])
             self.nstars.append(n_stars)
 
+            if self.verbose:
+                print 'iraf_als',iraf_als
+
             self.Centers[filter_] = {}
             self.Centers[filter_]['ID'] = np.array(range(n_stars))
             self.Centers[filter_]['MAG'] = iraf_als['MAG']
@@ -112,13 +115,14 @@ class OpenClusters:
         """
         pass
 
-    def PositionMatch(self, tol, image_names_file, shifts=None):
+    def PositionMatch(self, tol, n_iterations=None, shifts=None):
         """
         Matches the positions of data points across multiple images and filters.
 
         Parameters:
         self:   an OpenClusters object
         tol:    tolerance in matching files
+        n_iterations:   user can run matching for any number of iterations less than total length of base filter stars
         shifts: an array containing horizontal and vertical shift of filters
             self: an OpenClusters object
             tol: tolerance in matching stars on cmb (should be in units of magnitudes inputted)
@@ -170,17 +174,13 @@ class OpenClusters:
         self.StarMatch_extra[mag1+'_'+magBase+'_radius'] = []
         self.StarMatch_extra[mag2+'_'+magBase+'_radius'] = []
 
-        # NOTE: this is not logical (but the format will be used in future development)
-        # m1mBase_err = (self.Centers[mag1]['MERR'] ** 2 + self.Centers[magBase]['MERR'] ** 2) ** .5
-        # m2mBase_err = (self.Centers[mag2]['MERR'] ** 2 + self.Centers[magBase]['MERR'] ** 2) ** .5
-
         if self.verbose:
             print 'base filter:',magBase
             print 'matched filters:',mag1, mag2
 
         id_base = range(self.StarMatch[magBase]['NSTARS'])
-        id_mag1 = range(self.StarMatch[mag1]['NSTARS']) # v_id
-        id_mag2 = range(self.StarMatch[mag2]['NSTARS']) # b_id
+        # id_mag1 = range(self.StarMatch[mag1]['NSTARS']) # v_id
+        # id_mag2 = range(self.StarMatch[mag2]['NSTARS']) # b_id
 
         x_cen_magBase = self.Centers[magBase]['XCENTER_SHIFTED'] # y_xcen
         x_cen_mag1 = self.Centers[mag1]['XCENTER_SHIFTED'] # v_xcen
@@ -190,74 +190,62 @@ class OpenClusters:
         y_cen_mag1 = self.Centers[mag1]['YCENTER_SHIFTED'] # v_ycen
         y_cen_mag2 = self.Centers[mag2]['YCENTER_SHIFTED'] # b_ycen
 
-        ratio = 90
-        # for y in range(len(y_xcen)):
-        # for y in range(10):
-            # y_xcen_i = y_xcen[y]
-            # y_ycen_i = y_ycen[y]
-            # vy_rad = (v_xcen - y_xcen_i)**2 + (v_ycen - y_ycen_i)**2
-            # v = np.where(vy_rad == vy_rad.min())[0][0]
-            # if vy_rad.min() <= ratio*(als_v['MERR'][v]**2 + als_y['MERR'][y]**2)**.5:
-            #     by_rad = (b_xcen - y_xcen_i)**2 + (b_ycen - y_ycen_i)**2
-            #     b = np.where(by_rad == by_rad.min())[0][0]
-            #     if by_rad.min() <= ratio * (als_b['MERR'][b] ** 2 + als_y['MERR'][y] ** 2) ** .5:
+        mag_magBase = self.Centers[magBase]['MAG']
+        mag_mag1 = self.Centers[mag1]['MAG']
+        mag_mag2 = self.Centers[mag2]['MAG']
+
+        merr_magBase = self.Centers[magBase]['MERR']
+        merr_mag1 = self.Centers[mag1]['MERR']
+        merr_mag2 = self.Centers[mag2]['MERR']
 
         radius2 = lambda x,y : (x**2+y**2)
 
-        #TODO Go through **2 mistake and re-run all stars without the mistake
+        #TODO Go through **2 mistake and re-run all open cluster membership without the mistake
 
-        for base_i in range(10):
+        ratio = tol
+
+        if n_iterations == None:
+            n_iterations = len(id_base)
+
+        for base_i in id_base[:n_iterations]:
             x_cen_magBase_i = x_cen_magBase[base_i]
-            y_cen_magBase_i = x_cen_magBase[base_i]
+            y_cen_magBase_i = y_cen_magBase[base_i]
 
             mag1_magBase_radius2 = radius2((x_cen_mag1 - x_cen_magBase_i),(y_cen_mag1 - y_cen_magBase_i))
             mag1_i = np.argmin(mag1_magBase_radius2)
 
-            print mag1_i
-            if mag1_magBase_radius2.min() <= ratio*radius2(self.Centers[mag1]['MERR'][mag1_i],self.Centers[magBase]['MERR'][base_i]):
+            if mag1_magBase_radius2.min() <= ratio*radius2(self.Centers[mag1]['MERR'][mag1_i],
+                                                           self.Centers[magBase]['MERR'][base_i]):
+
                 mag2_magBase_radius2 = radius2((x_cen_mag2 - x_cen_magBase_i),(y_cen_mag2 - y_cen_magBase_i))
                 mag2_i = np.argmin(mag2_magBase_radius2)
 
-                print mag1_i,mag2_i
-                #TODO determine why this if argument never returns True
+                if mag2_magBase_radius2.min() <= ratio * radius2(self.Centers[mag2]['MERR'][mag2_i],
+                                                                 self.Centers[magBase]['MERR'][base_i]):
 
-                #
-                #
-                # if by_rad.min() <= ratio*(als_b['MERR'][b]**2 + als_y['MERR'][y]**2)**.5:
-                #     if verbose == 'no':
-                #         print np.where(by_rad == by_rad.min())
-                #         print np.where(by_rad == by_rad.min())[0][0]
-                #         print by_rad.min()
-                #         print by_rad[b]
-                #         print np.where(vy_rad == vy_rad.min())
-                #         print np.where(vy_rad == vy_rad.min())[0][0]
-                #         print vy_rad.min()
-                #         print vy_rad[v]
-                #
-                #     StarMatch['y_id'].append(y)
-                #     StarMatch['y_MAG'].append(als_y['MAG'][y])
-                #     StarMatch['y_MERR'].append(als_y['MERR'][y])
-                #     StarMatch['y_XCENTER'].append(y_xcen_i)
-                #     StarMatch['y_YCENTER'].append(y_ycen_i)
-                #
-                #     StarMatch['b_id'].append(b)
-                #     StarMatch['b_MAG'].append(als_b['MAG'][b])
-                #     StarMatch['b_MERR'].append(als_b['MERR'][b])
-                #     StarMatch['b_XCENTER'].append(b_xcen[b])
-                #     StarMatch['b_YCENTER'].append(b_ycen[b])
-                #
-                #     StarMatch['v_id'].append(v)
-                #     StarMatch['v_MAG'].append(als_v['MAG'][v])
-                #     StarMatch['v_MERR'].append(als_v['MERR'][v])
-                #     StarMatch['v_XCENTER'].append(v_xcen[v])
-                #     StarMatch['v_YCENTER'].append(v_ycen[v])
-                #
-                #     StarMatch_extra['by_rad'].append(by_rad.min())
-                #     StarMatch_extra['vy_rad'].append(vy_rad.min())
+                    self.StarMatch[magBase]['ID'].append(base_i)
+                    self.StarMatch[magBase]['MAG'].append(mag_magBase[base_i])
+                    self.StarMatch[magBase]['MERR'].append(merr_magBase[base_i])
+                    self.StarMatch[magBase]['XCENTER'].append(x_cen_magBase_i)
+                    self.StarMatch[magBase]['YCENTER'].append(y_cen_magBase_i)
+
+                    self.StarMatch[mag1]['ID'].append(mag1_i)
+                    self.StarMatch[mag1]['MAG'].append(mag_mag1[mag1_i])
+                    self.StarMatch[mag1]['MERR'].append(merr_mag1[mag1_i])
+                    self.StarMatch[mag1]['XCENTER'].append(x_cen_mag1[mag1_i])
+                    self.StarMatch[mag1]['YCENTER'].append(y_cen_mag1[mag1_i])
+
+                    self.StarMatch[mag2]['ID'].append(mag2_i)
+                    self.StarMatch[mag2]['MAG'].append(mag_mag2[mag2_i])
+                    self.StarMatch[mag2]['MERR'].append(merr_mag2[mag2_i])
+                    self.StarMatch[mag2]['XCENTER'].append(x_cen_mag2[mag2_i])
+                    self.StarMatch[mag2]['YCENTER'].append(y_cen_mag2[mag2_i])
+
+                    self.StarMatch_extra[mag1 + '_' + magBase + '_radius'].append(mag1_magBase_radius2.min())
+                    self.StarMatch_extra[mag2 + '_' + magBase + '_radius'].append(mag2_magBase_radius2.min())
 
         if self.verbose_absolute:
-            pass
-            # print '# Stars across filters',len(StarMatch['y_id']), '/', len(als_v)
+            print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
         """
         #Matching stars across filters
@@ -332,8 +320,6 @@ class OpenClusters:
         if verbose_absolute == 'yes':
             print '# Stars across filters',len(StarMatch['y_id']), '/', len(als_v)
         """
-
-        # TODO: PositionMatch UNDER CONSTRUCTION
 
     def Standardize(self):
         """
