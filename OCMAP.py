@@ -7,12 +7,13 @@ import itertools
 import matplotlib.pyplot as plt
 import os
 
-__author__ = ['Locke Patton','Ellis Avelone']
-
 class OpenClusters:
     """
     Container for open clusters.
     """
+
+    __author__ = ['Locke Patton', 'Ellis Avelone','Katie Crotts']
+
     def __init__(self, cluster, cluster_title, filters_images,
                  path_in_cluster, path_in_standards, path_out,
                  t=None, verbose=True, verbose_absolute=True):
