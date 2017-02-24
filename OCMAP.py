@@ -12,10 +12,10 @@ class OpenClusters:
     Container for open clusters.
     """
 
-    __author__ = ['Locke Patton', 'Ellis Avelone','Katie Crotts']
+    __author__ = ['Locke Patton', 'Ellis Avelone', 'Katie Crotts']
 
     def __init__(self, cluster, cluster_title, filters_images,
-                 path_in_cluster, path_in_standards, path_out, x_center, y_center,
+                 path_in_cluster, path_in_standards, path_out,
                  t=None, verbose=True, verbose_absolute=True):
         """
         Parameters:
@@ -41,8 +41,6 @@ class OpenClusters:
         #defining global verbose and verbose_absolute variables for printing
         self.verbose = verbose
         self.verbose_absolute = verbose_absolute
-        self.x_center = x_center
-        self.y_center = y_center
 
         #checking to see if user specified an output time, t, for use in naming output files
         if t == None:
@@ -94,37 +92,54 @@ class OpenClusters:
             if self.verbose:
                 print iraf_als_file
 
-path = r'/Cygwin/home/Katie/clusters/'
-flname = glob.glob(path + '*turner11xy.txt')
+    def plotXY(self, x=[None,None], y=[None,None], save_fig=False):
+        if self.verbose:
+            print "\nRunning plotXY"
 
-    def plotXYCenter(self):
-        plt.plot(self.x_center, self.y_center, linestyle='None', marker='o', markersize=10, alpha=.4)
-        plt.xlabel('X PIX')
-        plt.ylabel('Y PIX')
-        plt.title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16')
-        plt.legend(["b filter", "v filter", "y filter"], loc='upper left', fancybox=True, numpoints=1)
+        import matplotlib.pyplot as plt
+        from astropy.visualization import astropy_mpl_style
+        plt.style.use(astropy_mpl_style)
 
-    @classmethod
-    def from_txt(cls, flname):
-        data = np.loadtxt(flname)
-        print data
-        x_center = data[:, 0]
-        y_center = data[:, 1]
-        return cls(x_center=x_center, y_center=y_center)
+        fig, ax = plt.subplots(1, 1)
+        fig.set_size_inches(10, 10)
 
-xycenters = [OpenClusters.from_txt(path) for path in flname]
+        for filter_ in self.filters:
+            x_center = self.Centers[filter_]['XCENTER']
+            y_center = self.Centers[filter_]['YCENTER']
 
-for openclusters in xycenters:
-    print(openclusters.x_center.mean())
+            ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4,label=filter_)
 
-    for openclusters in xycenters:
-        openclusters.plot()
-    fig = plt.gcf()
-    fig.set_size_inches(8, 7)
-    plt.xlim(0, 200)
-    plt.ylim(0, 200)
+            ax.set_xlabel('X PIX')
+            ax.set_ylabel('Y PIX')
 
-        pass
+            ax.set_xlim(x[0],x[1])
+            ax.set_ylim(y[0],y[1])
+
+            # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
+            ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
+
+        fig.show()
+
+        if save_fig:
+            import os
+            directory = self.path_out + 'plots/'
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+
+            filenameend_x = ''
+            filenameend_y = ''
+            if x != [None,None]:
+                filenameend_x = '_x' + str(x[0]) + ':' + str(x[1])
+            if y != [None,None]:
+                filenameend_y = '_y' + str(y[0]) + ':' + str(y[1])
+
+            filenameend = filenameend_x + filenameend_y
+
+            fig.savefig(directory + self.cluster + '_xy_centers' + filenameend + '.jpg', bbox_inches='tight')
+            del os
+
+        del plt
+        del astropy_mpl_style
 
     def PositionMatch(self, tol, n_iterations=None, shifts=None):
         """
@@ -257,80 +272,6 @@ for openclusters in xycenters:
 
         if self.verbose_absolute:
             print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
-
-        """
-        #Matching stars across filters
-
-        StarMatch = {}
-        StarMatch_extra = {}
-
-        StarMatch['v_id']=[]
-        StarMatch['v_MAG'] = []
-        StarMatch['v_MERR'] = []
-        StarMatch['v_XCENTER'] = []
-        StarMatch['v_YCENTER'] = []
-        StarMatch['b_id']=[]
-        StarMatch['b_MAG'] = []
-        StarMatch['b_MERR'] = []
-        StarMatch['b_XCENTER'] = []
-        StarMatch['b_YCENTER'] = []
-        StarMatch['y_id']=[]
-        StarMatch['y_MAG'] = []
-        StarMatch['y_MERR'] = []
-        StarMatch['y_XCENTER'] = []
-        StarMatch['y_YCENTER'] = []
-
-        StarMatch_extra['by_rad'] = []
-        StarMatch_extra['vy_rad'] = []
-
-        # by_err = (als_b['MERR']**2 + als_y['MERR']**2)**.5
-        # vy_err = (als_v['MERR']**2 + als_y['MERR']**2)**.5
-
-        ratio = 90
-        for y in range(len(y_xcen)):
-        # for y in range(10):
-            y_xcen_i = y_xcen[y]
-            y_ycen_i = y_ycen[y]
-            vy_rad = (v_xcen - y_xcen_i)**2 + (v_ycen - y_ycen_i)**2
-            v = np.where(vy_rad == vy_rad.min())[0][0]
-            if vy_rad.min() <= ratio*(als_v['MERR'][v]**2 + als_y['MERR'][y]**2)**.5:
-                by_rad = (b_xcen - y_xcen_i)**2 + (b_ycen - y_ycen_i)**2
-                b = np.where(by_rad == by_rad.min())[0][0]
-                if by_rad.min() <= ratio*(als_b['MERR'][b]**2 + als_y['MERR'][y]**2)**.5:
-                    if verbose == 'no':
-                        print np.where(by_rad == by_rad.min())
-                        print np.where(by_rad == by_rad.min())[0][0]
-                        print by_rad.min()
-                        print by_rad[b]
-                        print np.where(vy_rad == vy_rad.min())
-                        print np.where(vy_rad == vy_rad.min())[0][0]
-                        print vy_rad.min()
-                        print vy_rad[v]
-
-                    StarMatch['y_id'].append(y)
-                    StarMatch['y_MAG'].append(als_y['MAG'][y])
-                    StarMatch['y_MERR'].append(als_y['MERR'][y])
-                    StarMatch['y_XCENTER'].append(y_xcen_i)
-                    StarMatch['y_YCENTER'].append(y_ycen_i)
-
-                    StarMatch['b_id'].append(b)
-                    StarMatch['b_MAG'].append(als_b['MAG'][b])
-                    StarMatch['b_MERR'].append(als_b['MERR'][b])
-                    StarMatch['b_XCENTER'].append(b_xcen[b])
-                    StarMatch['b_YCENTER'].append(b_ycen[b])
-
-                    StarMatch['v_id'].append(v)
-                    StarMatch['v_MAG'].append(als_v['MAG'][v])
-                    StarMatch['v_MERR'].append(als_v['MERR'][v])
-                    StarMatch['v_XCENTER'].append(v_xcen[v])
-                    StarMatch['v_YCENTER'].append(v_ycen[v])
-
-                    StarMatch_extra['by_rad'].append(by_rad.min())
-                    StarMatch_extra['vy_rad'].append(vy_rad.min())
-
-        if verbose_absolute == 'yes':
-            print '# Stars across filters',len(StarMatch['y_id']), '/', len(als_v)
-        """
 
     def Standardize(self):
         """

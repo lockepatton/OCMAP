@@ -16,6 +16,6 @@ Kronberger5 = oc(cluster, cluster_title, [filters,image_names],
                  path_in_cluster, path_in_standards, path_out)
 
 Kronberger5.PositionMatch(tol=200, n_iterations=None,shifts=shifts)
+Kronberger5.plotXY(save_fig=True,x=[0,500],y=[0,500])
 
-print Kronberger5.StarMatch
-print Kronberger5.StarMatch_extra
+print '\n', Kronberger5.StarMatch, '\n', Kronberger5.StarMatch_extra
