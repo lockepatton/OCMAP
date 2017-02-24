@@ -15,7 +15,7 @@ class OpenClusters:
     __author__ = ['Locke Patton', 'Ellis Avelone','Katie Crotts']
 
     def __init__(self, cluster, cluster_title, filters_images,
-                 path_in_cluster, path_in_standards, path_out,
+                 path_in_cluster, path_in_standards, path_out, x_center, y_center,
                  t=None, verbose=True, verbose_absolute=True):
         """
         Parameters:
@@ -41,6 +41,8 @@ class OpenClusters:
         #defining global verbose and verbose_absolute variables for printing
         self.verbose = verbose
         self.verbose_absolute = verbose_absolute
+        self.x_center = x_center
+        self.y_center = y_center
 
         #checking to see if user specified an output time, t, for use in naming output files
         if t == None:
@@ -92,28 +94,36 @@ class OpenClusters:
             if self.verbose:
                 print iraf_als_file
 
-    def plotXY(self):
-        if self.verbose:
-            print "\nRunning plotXY"
-        """
-        PREVIOUS CODE:
-        #Shift values correction Test plot
+path = r'/Cygwin/home/Katie/clusters/'
+flname = glob.glob(path + '*turner11xy.txt')
 
-        fig,ax = plt.subplots(1,1)
-        fig.tight_layout()
-        fig.set_size_inches(6,6)
-        ax.set_xlim(0,200)
-        ax.set_ylim(0,200)
-        ax.set_title(cluster_title + ' / XCENTER v. YCENTER in v, b, and y')
-        ax.set_xlabel('X PIX')
-        ax.set_ylabel('Y PIX')
-        ax.plot(als_b['XCENTER'],als_b['YCENTER'],marker='o',markersize='10',linestyle='',alpha=.2,label='b filter');
-        ax.plot(als_v['XCENTER'],als_v['YCENTER'],marker='x',markersize='10',linestyle='',label='v filter');
-        ax.plot(als_y['XCENTER'],als_y['YCENTER'],marker='+',markersize='10',linestyle='',label='y filter');
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),numpoints=1);
+    def plotXYCenter(self):
+        plt.plot(self.x_center, self.y_center, linestyle='None', marker='o', markersize=10, alpha=.4)
+        plt.xlabel('X PIX')
+        plt.ylabel('Y PIX')
+        plt.title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16')
+        plt.legend(["b filter", "v filter", "y filter"], loc='upper left', fancybox=True, numpoints=1)
 
-        #Check that shift values worked and stars indeed match up.
-        """
+    @classmethod
+    def from_txt(cls, flname):
+        data = np.loadtxt(flname)
+        print data
+        x_center = data[:, 0]
+        y_center = data[:, 1]
+        return cls(x_center=x_center, y_center=y_center)
+
+xycenters = [OpenClusters.from_txt(path) for path in flname]
+
+for openclusters in xycenters:
+    print(openclusters.x_center.mean())
+
+    for openclusters in xycenters:
+        openclusters.plot()
+    fig = plt.gcf()
+    fig.set_size_inches(8, 7)
+    plt.xlim(0, 200)
+    plt.ylim(0, 200)
+
         pass
 
     def PositionMatch(self, tol, n_iterations=None, shifts=None):
