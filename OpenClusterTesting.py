@@ -13,9 +13,10 @@ shifts = None
 image_names = np.genfromtxt(path_in_cluster + image_names_file, dtype=None)
 
 Kronberger5 = oc(cluster, cluster_title, [filters,image_names],
-                 path_in_cluster, path_in_standards, path_out)
+                 path_in_cluster, path_in_standards, path_out,verbose=False)
 
 Kronberger5.PositionMatch(tol=200, n_iterations=None,shifts=shifts)
 Kronberger5.plotXY(save_fig=True,x=[0,500],y=[0,500])
 
-print '\n', Kronberger5.StarMatch, '\n', Kronberger5.StarMatch_extra
+# print Kronberger5.Centers
+# print '\n', Kronberger5.StarMatch, '\n', Kronberger5.StarMatch_extra

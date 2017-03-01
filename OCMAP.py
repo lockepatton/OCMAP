@@ -273,6 +273,9 @@ class OpenClusters:
         if self.verbose_absolute:
             print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
+    def plotMatchedXY(self,x=[None,None], y=[None,None], save_fig=False):
+        pass
+
     def Standardize(self):
         """
         TODO
@@ -420,7 +423,7 @@ class OpenClusters:
         fig.set_size_inches(21, 6.5)
         fig.suptitle(self.cluster_title + ' Color Magnitude Diagrams', fontsize='16')
 
-        def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True):
+        def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True,save_fig=False):
             """
             Creates a subplot for the final CMD plot.
 
@@ -478,7 +481,8 @@ class OpenClusters:
         subplotCMD(2, x, y, 'Stars & Model TRILEGAL Stars', x_label, y_label, 'g',legend=self.cluster_title)
         subplotCMD(2, x_tri, y_tri, '', x_label, y_label, 'b', legend='TRILEGAL', setup=False)
 
-        fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
+        if save_fig:
+            fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
 
     def PlotPositions(self, markers, colors, xlim=None,ylim=None):
         """
