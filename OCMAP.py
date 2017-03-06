@@ -92,7 +92,8 @@ class OpenClusters:
             if self.verbose:
                 print iraf_als_file
 
-    def plotXY(self, x=[None,None], y=[None,None], save_fig=False):
+    # matching position centers functions
+    def PlotXY(self, x=[None,None], y=[None,None], save_fig=False):
         if self.verbose:
             print "\nRunning plotXY"
 
@@ -273,9 +274,10 @@ class OpenClusters:
         if self.verbose_absolute:
             print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
-    def plotMatchedXY(self,x=[None,None], y=[None,None], save_fig=False):
+    def PlotMatchedXY(self,x=[None,None], y=[None,None], save_fig=False):
         pass
 
+    #standardization functions
     def Standardize(self):
         """
         TODO
@@ -407,6 +409,19 @@ class OpenClusters:
             # itertools.islice(f_in, 79, None, 5)
             #                               dtype=[('RAPERT', '<f8'), ('SUM', '<f8'),('AREA', '<f8'),('FLUX', '<f8'),('MAG', '<f8'), ('MERR', '<f8'),('PIER', '<f8'),('PERROR', '<f8')])
 
+    def PlotStandard(self):
+        # TODO build this function
+        pass
+
+    def PlotMagStandard(self):
+        # TODO build this function
+        pass
+
+    #membership functions
+    def Membership(self):
+        # TODO build this function
+        pass
+
     def PlotCMD(self, col, mag):
         """
         Plots color-magnitude diagrams of both trilegal and standardized stars.
@@ -484,7 +499,7 @@ class OpenClusters:
         if save_fig:
             fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
 
-    def PlotPositions(self, markers, colors, xlim=None,ylim=None):
+    def PlotMembers(self, markers, colors, xlim=None,ylim=None):
         """
         Plots cluster spatial positions.
 
