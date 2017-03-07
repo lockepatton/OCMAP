@@ -93,7 +93,8 @@ class OpenClusters:
                 print iraf_als_file
 
     # matching position centers functions
-    def PlotXY(self, x=[None,None], y=[None,None], save_fig=False):
+    def PlotXY(self, x=None, y=None, save_fig=False):
+
         if self.verbose:
             print "\nRunning plotXY"
 
@@ -113,8 +114,11 @@ class OpenClusters:
             ax.set_xlabel('X PIX')
             ax.set_ylabel('Y PIX')
 
-            ax.set_xlim(x[0],x[1])
-            ax.set_ylim(y[0],y[1])
+            if x is not None:
+                ax.set_xlim(x[0],x[1])
+
+            if y is not None:
+                ax.set_ylim(y[0],y[1])
 
             # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
             ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
