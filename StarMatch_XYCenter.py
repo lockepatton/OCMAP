@@ -83,232 +83,232 @@ class OpenClusters:
             if self.verbose:
                 print iraf_als_file
 
-def plotXY(self, x=[None, None], y=[None, None], save_fig=False):
-    if self.verbose:
-        print "\nRunning plotXY"
-
-    import matplotlib.pyplot as plt
-    from astropy.visualization import astropy_mpl_style
-    plt.style.use(astropy_mpl_style)
-
-    fig, ax = plt.subplots(1, 1)
-    fig.set_size_inches(10, 10)
-
-    for filter_ in self.filters:
-        x_center = self.Centers[filter_]['XCENTER']
-        y_center = self.Centers[filter_]['YCENTER']
-
-        ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4, label=filter_)
-
-        ax.set_xlabel('X PIX')
-        ax.set_ylabel('Y PIX')
-
-        ax.set_xlim(x[0], x[1])
-        ax.set_ylim(y[0], y[1])
-
-        # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
-        ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
-
-    fig.show()
-
-    if save_fig:
-        import os
-        directory = self.path_out + 'plots/'
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-
-        filenameend_x = ''
-        filenameend_y = ''
-        if x != [None, None]:
-            filenameend_x = '_x' + str(x[0]) + ':' + str(x[1])
-        if y != [None, None]:
-            filenameend_y = '_y' + str(y[0]) + ':' + str(y[1])
-
-        filenameend = filenameend_x + filenameend_y
-
-        fig.savefig(directory + self.cluster + '_xy_centers' + filenameend + '.jpg', bbox_inches='tight')
-        del os
-
-    del plt
-    del astropy_mpl_style
-
-
-def PositionMatch(self, tol, n_iterations=None, shifts=None):
-    """
-    Matches the positions of data points across multiple images and filters.
-
-    Parameters:
-    self:   an OpenClusters object
-    tol:    tolerance in matching files
-    n_iterations:   user can run matching for any number of iterations less than total length of base filter stars
-    shifts: an array containing horizontal and vertical shift of filters
-        self: an OpenClusters object
-        tol: tolerance in matching stars on cmb (should be in units of magnitudes inputted)
-        shifts: an array containing horizontal and vertical position shifts between separate images (filters)
-        image_names: names of images (in IRAF als format).
-    """
-    if self.verbose:
-        print "\nRunning PositionMatch"
-    # Determining the shifts for each filter in each filter in x and y direction
-
-    # default shifts are 0s
-    if shifts == None:
-        self.shifts = []
-        for filter_ in self.filters:
-            self.shifts.append([0., 0.])
-    else:
-        self.shifts = shifts
-
-    self.StarMatch = {}
-    self.StarMatch_extra = {}
-
-    for it_, (filter_, image_name_) in enumerate(zip(self.filters, self.image_names)):
-
-        self.Centers[filter_]['XCENTER_SHIFTED'] = self.Centers[filter_]['XCENTER'] + self.shifts[it_][0]
-        self.Centers[filter_]['YCENTER_SHIFTED'] = self.Centers[filter_]['YCENTER'] + self.shifts[it_][1]
-
-        # printing filters, image name, iraf_als_file if verbose
+    def plotXY(self, x=[None, None], y=[None, None], save_fig=False):
         if self.verbose:
-            print "filter, image:", filter_, image_name_
-            print 'x, y shift:', self.shifts[it_]
+            print "\nRunning plotXY"
 
-        # building matching framework
-        self.StarMatch[filter_] = {}
-        self.StarMatch[filter_]['ID'] = []
-        self.StarMatch[filter_]['MAG'] = []
-        self.StarMatch[filter_]['MERR'] = []
-        self.StarMatch[filter_]['XCENTER'] = []
-        self.StarMatch[filter_]['YCENTER'] = []
-        self.StarMatch[filter_]['NSTARS'] = self.Centers[filter_]['NSTARS']
-        self.StarMatch_extra[filter_] = {}
+        import matplotlib.pyplot as plt
+        from astropy.visualization import astropy_mpl_style
+        plt.style.use(astropy_mpl_style)
 
-    # defining base filter as one with most stars
-    magBase_index = np.argmax(self.nstars)
-    magBase = self.filters[magBase_index]
+        fig, ax = plt.subplots(1, 1)
+        fig.set_size_inches(10, 10)
 
-    # defining filters 1 and 2 as first inputed into filters list (apart from the filter with max # of stars)
-    mag1, mag2 = np.delete(self.filters, magBase_index)[:2]
+        for filter_ in self.filters:
+            x_center = self.Centers[filter_]['XCENTER']
+            y_center = self.Centers[filter_]['YCENTER']
 
-    self.StarMatch_extra[mag1 + '_' + magBase + '_radius'] = []
-    self.StarMatch_extra[mag2 + '_' + magBase + '_radius'] = []
+            ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4, label=filter_)
 
-    if self.verbose:
-        print 'base filter:', magBase
-        print 'matched filters:', mag1, mag2
+            ax.set_xlabel('X PIX')
+            ax.set_ylabel('Y PIX')
 
-    id_base = range(self.StarMatch[magBase]['NSTARS'])
-    # id_mag1 = range(self.StarMatch[mag1]['NSTARS']) # v_id
-    # id_mag2 = range(self.StarMatch[mag2]['NSTARS']) # b_id
+            ax.set_xlim(x[0], x[1])
+            ax.set_ylim(y[0], y[1])
 
-    x_cen_magBase = self.Centers[magBase]['XCENTER_SHIFTED']  # y_xcen
-    x_cen_mag1 = self.Centers[mag1]['XCENTER_SHIFTED']  # v_xcen
-    x_cen_mag2 = self.Centers[mag2]['XCENTER_SHIFTED']  # b_xcen
+            # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
+            ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
 
-    y_cen_magBase = self.Centers[magBase]['YCENTER_SHIFTED']  # y_ycen
-    y_cen_mag1 = self.Centers[mag1]['YCENTER_SHIFTED']  # v_ycen
-    y_cen_mag2 = self.Centers[mag2]['YCENTER_SHIFTED']  # b_ycen
+        fig.show()
 
-    mag_magBase = self.Centers[magBase]['MAG']
-    mag_mag1 = self.Centers[mag1]['MAG']
-    mag_mag2 = self.Centers[mag2]['MAG']
+        if save_fig:
+            import os
+            directory = self.path_out + 'plots/'
+            if not os.path.exists(directory):
+                os.makedirs(directory)
 
-    merr_magBase = self.Centers[magBase]['MERR']
-    merr_mag1 = self.Centers[mag1]['MERR']
-    merr_mag2 = self.Centers[mag2]['MERR']
+            filenameend_x = ''
+            filenameend_y = ''
+            if x != [None, None]:
+                filenameend_x = '_x' + str(x[0]) + ':' + str(x[1])
+            if y != [None, None]:
+                filenameend_y = '_y' + str(y[0]) + ':' + str(y[1])
 
-    radius2 = lambda x, y: (x ** 2 + y ** 2)
+            filenameend = filenameend_x + filenameend_y
 
-    # TODO Go through **2 mistake and re-run all open cluster membership without the mistake
+            fig.savefig(directory + self.cluster + '_xy_centers' + filenameend + '.jpg', bbox_inches='tight')
+            del os
 
-    ratio = tol
+        del plt
+        del astropy_mpl_style
 
-    if n_iterations == None:
-        n_iterations = len(id_base)
+    def PositionMatch(self, tol, n_iterations=None, shifts=None):
+        """
+        Matches the positions of data points across multiple images and filters.
 
-    for base_i in id_base[:n_iterations]:
-        x_cen_magBase_i = x_cen_magBase[base_i]
-        y_cen_magBase_i = y_cen_magBase[base_i]
+        Parameters:
+        self:   an OpenClusters object
+        tol:    tolerance in matching files
+        n_iterations:   user can run matching for any number of iterations less than total length of base filter stars
+        shifts: an array containing horizontal and vertical shift of filters
+            self: an OpenClusters object
+            tol: tolerance in matching stars on cmb (should be in units of magnitudes inputted)
+            shifts: an array containing horizontal and vertical position shifts between separate images (filters)
+            image_names: names of images (in IRAF als format).
+        """
+        if self.verbose:
+            print "\nRunning PositionMatch"
+        # Determining the shifts for each filter in each filter in x and y direction
 
-        mag1_magBase_radius2 = radius2((x_cen_mag1 - x_cen_magBase_i), (y_cen_mag1 - y_cen_magBase_i))
-        mag1_i = np.argmin(mag1_magBase_radius2)
+        # default shifts are 0s
+        if shifts == None:
+            self.shifts = []
+            for filter_ in self.filters:
+                self.shifts.append([0., 0.])
+        else:
+            self.shifts = shifts
 
-        if mag1_magBase_radius2.min() <= ratio * radius2(self.Centers[mag1]['MERR'][mag1_i],
-                                                         self.Centers[magBase]['MERR'][base_i]):
+        self.StarMatch = {}
+        self.StarMatch_extra = {}
 
-            mag2_magBase_radius2 = radius2((x_cen_mag2 - x_cen_magBase_i), (y_cen_mag2 - y_cen_magBase_i))
-            mag2_i = np.argmin(mag2_magBase_radius2)
+        for it_, (filter_, image_name_) in enumerate(zip(self.filters, self.image_names)):
 
-            if mag2_magBase_radius2.min() <= ratio * radius2(self.Centers[mag2]['MERR'][mag2_i],
+            self.Centers[filter_]['XCENTER_SHIFTED'] = self.Centers[filter_]['XCENTER'] + self.shifts[it_][0]
+            self.Centers[filter_]['YCENTER_SHIFTED'] = self.Centers[filter_]['YCENTER'] + self.shifts[it_][1]
+
+            # printing filters, image name, iraf_als_file if verbose
+            if self.verbose:
+                print "filter, image:", filter_, image_name_
+                print 'x, y shift:', self.shifts[it_]
+
+            # building matching framework
+            self.StarMatch[filter_] = {}
+            self.StarMatch[filter_]['ID'] = []
+            self.StarMatch[filter_]['MAG'] = []
+            self.StarMatch[filter_]['MERR'] = []
+            self.StarMatch[filter_]['XCENTER'] = []
+            self.StarMatch[filter_]['YCENTER'] = []
+            self.StarMatch[filter_]['NSTARS'] = self.Centers[filter_]['NSTARS']
+            self.StarMatch_extra[filter_] = {}
+
+        # defining base filter as one with most stars
+        magBase_index = np.argmax(self.nstars)
+        magBase = self.filters[magBase_index]
+
+        # defining filters 1 and 2 as first inputed into filters list (apart from the filter with max # of stars)
+        mag1, mag2 = np.delete(self.filters, magBase_index)[:2]
+
+        self.StarMatch_extra[mag1 + '_' + magBase + '_radius'] = []
+        self.StarMatch_extra[mag2 + '_' + magBase + '_radius'] = []
+
+        if self.verbose:
+            print 'base filter:', magBase
+            print 'matched filters:', mag1, mag2
+
+        id_base = range(self.StarMatch[magBase]['NSTARS'])
+        # id_mag1 = range(self.StarMatch[mag1]['NSTARS']) # v_id
+        # id_mag2 = range(self.StarMatch[mag2]['NSTARS']) # b_id
+
+        x_cen_magBase = self.Centers[magBase]['XCENTER_SHIFTED']  # y_xcen
+        x_cen_mag1 = self.Centers[mag1]['XCENTER_SHIFTED']  # v_xcen
+        x_cen_mag2 = self.Centers[mag2]['XCENTER_SHIFTED']  # b_xcen
+
+        y_cen_magBase = self.Centers[magBase]['YCENTER_SHIFTED']  # y_ycen
+        y_cen_mag1 = self.Centers[mag1]['YCENTER_SHIFTED']  # v_ycen
+        y_cen_mag2 = self.Centers[mag2]['YCENTER_SHIFTED']  # b_ycen
+
+        mag_magBase = self.Centers[magBase]['MAG']
+        mag_mag1 = self.Centers[mag1]['MAG']
+        mag_mag2 = self.Centers[mag2]['MAG']
+
+        merr_magBase = self.Centers[magBase]['MERR']
+        merr_mag1 = self.Centers[mag1]['MERR']
+        merr_mag2 = self.Centers[mag2]['MERR']
+
+        radius2 = lambda x, y: (x ** 2 + y ** 2)
+
+        # TODO Go through **2 mistake and re-run all open cluster membership without the mistake
+
+        ratio = tol
+
+        if n_iterations == None:
+            n_iterations = len(id_base)
+
+        for base_i in id_base[:n_iterations]:
+            x_cen_magBase_i = x_cen_magBase[base_i]
+            y_cen_magBase_i = y_cen_magBase[base_i]
+
+            mag1_magBase_radius2 = radius2((x_cen_mag1 - x_cen_magBase_i), (y_cen_mag1 - y_cen_magBase_i))
+            mag1_i = np.argmin(mag1_magBase_radius2)
+
+            if mag1_magBase_radius2.min() <= ratio * radius2(self.Centers[mag1]['MERR'][mag1_i],
                                                              self.Centers[magBase]['MERR'][base_i]):
-                self.StarMatch[magBase]['ID'].append(base_i)
-                self.StarMatch[magBase]['MAG'].append(mag_magBase[base_i])
-                self.StarMatch[magBase]['MERR'].append(merr_magBase[base_i])
-                self.StarMatch[magBase]['XCENTER'].append(x_cen_magBase_i)
-                self.StarMatch[magBase]['YCENTER'].append(y_cen_magBase_i)
 
-                self.StarMatch[mag1]['ID'].append(mag1_i)
-                self.StarMatch[mag1]['MAG'].append(mag_mag1[mag1_i])
-                self.StarMatch[mag1]['MERR'].append(merr_mag1[mag1_i])
-                self.StarMatch[mag1]['XCENTER'].append(x_cen_mag1[mag1_i])
-                self.StarMatch[mag1]['YCENTER'].append(y_cen_mag1[mag1_i])
+                mag2_magBase_radius2 = radius2((x_cen_mag2 - x_cen_magBase_i), (y_cen_mag2 - y_cen_magBase_i))
+                mag2_i = np.argmin(mag2_magBase_radius2)
 
-                self.StarMatch[mag2]['ID'].append(mag2_i)
-                self.StarMatch[mag2]['MAG'].append(mag_mag2[mag2_i])
-                self.StarMatch[mag2]['MERR'].append(merr_mag2[mag2_i])
-                self.StarMatch[mag2]['XCENTER'].append(x_cen_mag2[mag2_i])
-                self.StarMatch[mag2]['YCENTER'].append(y_cen_mag2[mag2_i])
+                if mag2_magBase_radius2.min() <= ratio * radius2(self.Centers[mag2]['MERR'][mag2_i],
+                                                                 self.Centers[magBase]['MERR'][base_i]):
+                    self.StarMatch[magBase]['ID'].append(base_i)
+                    self.StarMatch[magBase]['MAG'].append(mag_magBase[base_i])
+                    self.StarMatch[magBase]['MERR'].append(merr_magBase[base_i])
+                    self.StarMatch[magBase]['XCENTER'].append(x_cen_magBase_i)
+                    self.StarMatch[magBase]['YCENTER'].append(y_cen_magBase_i)
 
-                self.StarMatch_extra[mag1 + '_' + magBase + '_radius'].append(mag1_magBase_radius2.min())
-                self.StarMatch_extra[mag2 + '_' + magBase + '_radius'].append(mag2_magBase_radius2.min())
+                    self.StarMatch[mag1]['ID'].append(mag1_i)
+                    self.StarMatch[mag1]['MAG'].append(mag_mag1[mag1_i])
+                    self.StarMatch[mag1]['MERR'].append(merr_mag1[mag1_i])
+                    self.StarMatch[mag1]['XCENTER'].append(x_cen_mag1[mag1_i])
+                    self.StarMatch[mag1]['YCENTER'].append(y_cen_mag1[mag1_i])
 
-    if self.verbose_absolute:
-        print '# Stars across filters', len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
+                    self.StarMatch[mag2]['ID'].append(mag2_i)
+                    self.StarMatch[mag2]['MAG'].append(mag_mag2[mag2_i])
+                    self.StarMatch[mag2]['MERR'].append(merr_mag2[mag2_i])
+                    self.StarMatch[mag2]['XCENTER'].append(x_cen_mag2[mag2_i])
+                    self.StarMatch[mag2]['YCENTER'].append(y_cen_mag2[mag2_i])
 
-def plot_StarMatchXY(self, x=[None, None], y=[None, None], save_fig=False) :
-    if self.verbose:
-        print "\nRunning plot_StarMatchXY"
+                    self.StarMatch_extra[mag1 + '_' + magBase + '_radius'].append(mag1_magBase_radius2.min())
+                    self.StarMatch_extra[mag2 + '_' + magBase + '_radius'].append(mag2_magBase_radius2.min())
 
-    import matplotlib.pyplot as plt
-    from astropy.visualization import astropy_mpl_style
-    plt.style.use(astropy_mpl_style)
+        if self.verbose_absolute:
+            print '# Stars across filters', len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
-    fig, ax = plt.subplots(1, 1)
-    fig.set_size_inches(10, 10)
+    def plot_StarMatchXY(self, x=[None, None], y=[None, None], save_fig=False) :
 
-    for filter_ in self.filters:
-        x_center = self.StarMatch[filter_]['XCENTER']
-        y_center = self.StarMatch[filter_]['YCENTER']
+        if self.verbose:
+            print "\nRunning plot_StarMatchXY"
 
-        ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4, label=filter_)
+        import matplotlib.pyplot as plt
+        from astropy.visualization import astropy_mpl_style
+        plt.style.use(astropy_mpl_style)
 
-        ax.set_xlabel('X PIX')
-        ax.set_ylabel('Y PIX')
+        fig, ax = plt.subplots(1, 1)
+        fig.set_size_inches(10, 10)
 
-        ax.set_xlim(x[0], x[1])
-        ax.set_ylim(y[0], y[1])
+        for filter_ in self.filters:
+            x_center = self.StarMatch[filter_]['XCENTER']
+            y_center = self.StarMatch[filter_]['YCENTER']
 
-        # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
-        ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
+            ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4, label=filter_)
 
-    fig.show()
+            ax.set_xlabel('X PIX')
+            ax.set_ylabel('Y PIX')
 
-    if save_fig:
-        import os
-        directory = self.path_out + 'plots/'
-        if not os.path.exists(directory):
-            os.makedirs(directory)
+            ax.set_xlim(x[0], x[1])
+            ax.set_ylim(y[0], y[1])
 
-        filenameend_x = ''
-        filenameend_y = ''
-        if x != [None, None]:
-            filenameend_x = '_x' + str(x[0]) + ':' + str(x[1])
-        if y != [None, None]:
-            filenameend_y = '_y' + str(y[0]) + ':' + str(y[1])
+            # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
+            ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
 
-        filenameend = filenameend_x + filenameend_y
+        fig.show()
 
-        fig.savefig(directory + self.cluster + 'StarMatch_xy_centers' + filenameend + '.jpg', bbox_inches='tight')
-        del os
+        if save_fig:
+            import os
+            directory = self.path_out + 'plots/'
+            if not os.path.exists(directory):
+                os.makedirs(directory)
 
-    del plt
-    del astropy_mpl_style
+            filenameend_x = ''
+            filenameend_y = ''
+            if x != [None, None]:
+                filenameend_x = '_x' + str(x[0]) + ':' + str(x[1])
+            if y != [None, None]:
+                filenameend_y = '_y' + str(y[0]) + ':' + str(y[1])
+
+            filenameend = filenameend_x + filenameend_y
+
+            fig.savefig(directory + self.cluster + 'StarMatch_xy_centers' + filenameend + '.jpg', bbox_inches='tight')
+            del os
+
+        del plt
+        del astropy_mpl_style
