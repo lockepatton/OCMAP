@@ -92,7 +92,9 @@ class OpenClusters:
             if self.verbose:
                 print iraf_als_file
 
-    def plotXY(self, x=[None,None], y=[None,None], save_fig=False):
+    # matching position centers functions
+    def PlotXY(self, x=None, y=None, save_fig=False):
+
         if self.verbose:
             print "\nRunning plotXY"
 
@@ -112,8 +114,11 @@ class OpenClusters:
             ax.set_xlabel('X PIX')
             ax.set_ylabel('Y PIX')
 
-            ax.set_xlim(x[0],x[1])
-            ax.set_ylim(y[0],y[1])
+            if x is not None:
+                ax.set_xlim(x[0],x[1])
+
+            if y is not None:
+                ax.set_ylim(y[0],y[1])
 
             # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
             ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
@@ -273,6 +278,10 @@ class OpenClusters:
         if self.verbose_absolute:
             print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
+    def PlotMatchedXY(self,x=None, y=None, save_fig=False):
+        pass
+
+    #standardization functions
     def Standardize(self):
         """
         TODO
@@ -404,6 +413,19 @@ class OpenClusters:
             # itertools.islice(f_in, 79, None, 5)
             #                               dtype=[('RAPERT', '<f8'), ('SUM', '<f8'),('AREA', '<f8'),('FLUX', '<f8'),('MAG', '<f8'), ('MERR', '<f8'),('PIER', '<f8'),('PERROR', '<f8')])
 
+    def PlotStandard(self):
+        # TODO build this function
+        pass
+
+    def PlotMagStandard(self):
+        # TODO build this function
+        pass
+
+    #membership functions
+    def Membership(self):
+        # TODO build this function
+        pass
+
     def PlotCMD(self, col, mag):
         """
         Plots color-magnitude diagrams of both trilegal and standardized stars.
@@ -420,7 +442,7 @@ class OpenClusters:
         fig.set_size_inches(21, 6.5)
         fig.suptitle(self.cluster_title + ' Color Magnitude Diagrams', fontsize='16')
 
-        def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True):
+        def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True,save_fig=False):
             """
             Creates a subplot for the final CMD plot.
 
@@ -478,9 +500,10 @@ class OpenClusters:
         subplotCMD(2, x, y, 'Stars & Model TRILEGAL Stars', x_label, y_label, 'g',legend=self.cluster_title)
         subplotCMD(2, x_tri, y_tri, '', x_label, y_label, 'b', legend='TRILEGAL', setup=False)
 
-        fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
+        if save_fig:
+            fig.savefig(path_out + cluster + '_' + str(t.date()) + '_plot_colmag_tri_cluster.jpg', bbox_inches='tight')
 
-    def PlotPositions(self, markers, colors, xlim=None,ylim=None):
+    def PlotMembers(self, markers, colors, xlim=None,ylim=None):
         """
         Plots cluster spatial positions.
 
