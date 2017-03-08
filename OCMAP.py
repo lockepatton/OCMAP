@@ -278,7 +278,7 @@ class OpenClusters:
         if self.verbose_absolute:
             print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
-    def PlotMatchedXY(self,x=[None,None], y=[None,None], save_fig=False):
+    def PlotMatchedXY(self,x=None, y=None, save_fig=False):
         pass
 
     #standardization functions
