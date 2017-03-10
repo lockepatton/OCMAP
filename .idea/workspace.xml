@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4aeebcfe-8b40-4c06-8ebf-179f0dbb1b55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCMAP.py" afterPath="$PROJECT_DIR$/OCMAP.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCMAP_variables.txt" afterPath="$PROJECT_DIR$/OCMAP_variables.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,24 +21,10 @@
       <file leaf-file-name="OCMAP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OCMAP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="30">
+              <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding>
-                <element signature="e#43#61#0" expanded="true" />
                 <element signature="e#190#234#1" expanded="false" />
-                <element signature="e#500#3876#0" expanded="false" />
-                <element signature="e#500#1309#1" expanded="false" />
-                <element signature="e#2488#3876#0" expanded="false" />
-                <element signature="e#3977#5611#0" expanded="false" />
-                <element signature="e#5687#11893#0" expanded="false" />
-                <element signature="e#11964#11968#0" expanded="false" />
-                <element signature="e#12036#19778#0" expanded="false" />
-                <element signature="e#19816#19855#0" expanded="false" />
-                <element signature="e#19896#19935#0" expanded="false" />
-                <element signature="e#19997#20036#0" expanded="false" />
-                <element signature="e#20079#23660#0" expanded="false" />
-                <element signature="e#20079#20484#1" expanded="false" />
-                <element signature="e#23735#29227#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -84,8 +71,8 @@
       <file leaf-file-name="OCMAP_variables.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OCMAP_variables.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="69" column="40" lean-forward="false" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
+            <state relative-caret-position="713">
+              <caret line="75" column="40" lean-forward="false" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -449,21 +436,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -499,21 +472,7 @@
         <state relative-caret-position="6120">
           <caret line="408" column="0" lean-forward="true" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -549,21 +508,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -599,21 +544,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -623,21 +554,7 @@
         <state relative-caret-position="45">
           <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -699,21 +616,7 @@
         <state relative-caret-position="3555">
           <caret line="237" column="50" lean-forward="true" selection-start-line="237" selection-start-column="50" selection-end-line="237" selection-end-column="50" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -759,21 +662,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -813,21 +702,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -852,8 +727,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OCMAP_variables.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="69" column="40" lean-forward="false" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
+        <state relative-caret-position="713">
+          <caret line="75" column="40" lean-forward="false" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -892,24 +767,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OCMAP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="30">
+          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#500#3876#0" expanded="false" />
-            <element signature="e#500#1309#1" expanded="false" />
-            <element signature="e#2488#3876#0" expanded="false" />
-            <element signature="e#3977#5611#0" expanded="false" />
-            <element signature="e#5687#11893#0" expanded="false" />
-            <element signature="e#11964#11968#0" expanded="false" />
-            <element signature="e#12036#19778#0" expanded="false" />
-            <element signature="e#19816#19855#0" expanded="false" />
-            <element signature="e#19896#19935#0" expanded="false" />
-            <element signature="e#19997#20036#0" expanded="false" />
-            <element signature="e#20079#23660#0" expanded="false" />
-            <element signature="e#20079#20484#1" expanded="false" />
-            <element signature="e#23735#29227#0" expanded="false" />
           </folding>
         </state>
       </provider>
