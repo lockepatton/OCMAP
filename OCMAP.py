@@ -12,7 +12,7 @@ class OpenClusters:
     Container for open clusters.
     """
 
-    __author__ = ['Locke Patton', 'Ellis Avelone', 'Katie Crotts']
+    __author__ = ['Locke Patton', 'Ellis Avallone', 'Katie Crotts']
 
     def __init__(self, cluster, cluster_title, filters_images,
                  path_in_cluster, path_in_standards, path_out,
@@ -23,47 +23,48 @@ class OpenClusters:
         cluster_title:     string corresponding to the desired plot titles.
         path_in_cluster:   string corresponding to the location of cluster .als files
         path_in_standards: string corresponding to the location of standard .mag files
-        filters_images:    2D array-like. contains strings corresponding to the filters used and their corresponding image base names.
+        filters_images:    2D array-like. contains strings corresponding to the filters used and their corresponding
+                           image base names.
         path_out: 	       string corresponding to the desired saving location for output files and plots.
         verbose: 	       Boolean that lets OCMAP know whether or not to print extra information.
         verbose_absolute:  Boolean that lets OCMAP know whether or not to print important information.
         """
 
-        #details about cluster under consideration
+        # Details about cluster under consideration
         self.cluster = cluster
         self.cluster_title = cluster_title
 
-        #paths for reading in open cluster magnitude files, standard star magnitude files and output files
+        # Paths for reading in open cluster magnitude files, standard star magnitude files and output files
         self.path_in_cluster = path_in_cluster
         self.path_in_standards = path_in_standards
         self.path_out = path_out
 
-        #defining global verbose and verbose_absolute variables for printing
+        # Defining global verbose and verbose_absolute variables for printing
         self.verbose = verbose
         self.verbose_absolute = verbose_absolute
 
-        #checking to see if user specified an output time, t, for use in naming output files
+        # Checking to see if user specified an output time, t, for use in naming output files
         if t == None:
             self.t = datetime.datetime.now()
         elif t != None:
             self.t = t
 
-        #printing output time in files
+        # Printing output time in files
         if verbose_absolute:
             print 'output time seen in file names:', self.t
 
-        #dictionary to contain magnitudes and images names, etc
+        # Dictionary to contain magnitudes and images names, etc
         self.Centers = {}
 
-        #reading in magnitudes from filters and image array
+        # Reading in magnitudes from filters and image array
         self.filters, self.image_names = filters_images
         self.nstars = []
 
         for filter_, image_name_ in zip(self.filters,self.image_names):
-            # building readin command
+            # Building readin command
             iraf_als_file = glob.glob(self.path_in_cluster + image_name_)
 
-            # opening iraf als photometry file
+            # Opening iraf als photometry file
             with open(iraf_als_file[0]) as f_in:
                 # intertools.islice slices file to only obtain mag line
                 iraf_als = np.genfromtxt(itertools.islice(f_in, 0, None, 2),
@@ -86,13 +87,13 @@ class OpenClusters:
 
 
 
-            # printing filters, image name, iraf_als_file if verbose
+            # Printing filters, image name, iraf_als_file if verbose
             if self.verbose_absolute:
                 print n_stars, 'stars in', filter_, 'from', image_name_
             if self.verbose:
                 print iraf_als_file
 
-    # matching position centers functions
+    # Matching position centers functions
     def PlotXY(self, x=None, y=None, save_fig=False):
 
         if self.verbose:
@@ -151,20 +152,17 @@ class OpenClusters:
         Matches the positions of data points across multiple images and filters.
 
         Parameters:
-        self:   an OpenClusters object
-        tol:    tolerance in matching files
+        self:           an OpenClusters object
+        tol:            tolerance in matching stars on CMD in units of magnitudes
         n_iterations:   user can run matching for any number of iterations less than total length of base filter stars
-        shifts: an array containing horizontal and vertical shift of filters
-            self: an OpenClusters object
-            tol: tolerance in matching stars on cmb (should be in units of magnitudes inputted)
-            shifts: an array containing horizontal and vertical position shifts between separate images (filters)
-            image_names: names of images (in IRAF als format).
+        shifts:         an array containing horizontal and vertical position shifts between separate images (filters)
+        image_names:    names of images (in IRAF als format).
         """
         if self.verbose:
             print "\nRunning PositionMatch"
-        #Determining the shifts for each filter in each filter in x and y direction
+        # Determining the shifts for each filter in each filter in x and y direction
 
-        #default shifts are 0s
+        # Default shifts are 0s
         if shifts == None:
             self.shifts = []
             for filter_ in self.filters:
@@ -180,12 +178,12 @@ class OpenClusters:
             self.Centers[filter_]['XCENTER_SHIFTED'] = self.Centers[filter_]['XCENTER'] + self.shifts[it_][0]
             self.Centers[filter_]['YCENTER_SHIFTED'] = self.Centers[filter_]['YCENTER'] + self.shifts[it_][1]
 
-            #printing filters, image name, iraf_als_file if verbose
+            # Printing filters, image name, iraf_als_file if verbose
             if self.verbose:
                 print "filter, image:", filter_, image_name_
                 print 'x, y shift:', self.shifts[it_]
 
-            #building matching framework
+            # Build matching framework
             self.StarMatch[filter_]={}
             self.StarMatch[filter_]['ID'] = []
             self.StarMatch[filter_]['MAG'] = []
@@ -195,11 +193,11 @@ class OpenClusters:
             self.StarMatch[filter_]['NSTARS'] = self.Centers[filter_]['NSTARS']
             self.StarMatch_extra[filter_] = {}
 
-        #defining base filter as one with most stars
+        # Defining base filter as one with most stars
         magBase_index = np.argmax(self.nstars)
         magBase = self.filters[magBase_index]
 
-        #defining filters 1 and 2 as first inputed into filters list (apart from the filter with max # of stars)
+        # Defining filters 1 and 2 as first inputed into filters list (apart from the filter with max # of stars)
         mag1,mag2 = np.delete(self.filters, magBase_index)[:2]
 
         self.StarMatch_extra[mag1+'_'+magBase+'_radius'] = []
@@ -231,7 +229,7 @@ class OpenClusters:
 
         radius2 = lambda x,y : (x**2+y**2)
 
-        #TODO Go through **2 mistake and re-run all open cluster membership without the mistake
+        #TODO: Go through **2 mistake and re-run all open cluster membership without the mistake
 
         ratio = tol
 
@@ -281,10 +279,9 @@ class OpenClusters:
     def PlotMatchedXY(self, x=None, y=None, save_fig=False):
         pass
 
-    #standardization functions
+    # Standardization functions
     def Standardize(self):
         """
-        TODO
         Parameters:
         self: an OpenClusters object
         """
@@ -432,7 +429,8 @@ class OpenClusters:
 
         Parameters:
         self: an OpenClusters object
-        col:  a two-dimensional array containing the first magnitude m1 and second magnitude m2 within a color m1-m2 i.e. ['v','b']
+        col:  a two-dimensional array containing the first magnitude m1 and second magnitude m2 within
+              a color m1-m2 i.e. ['v','b']
         mag:  a string corresponding to a magnitude name, i.e. 'v'
 
         Returns:
@@ -444,7 +442,7 @@ class OpenClusters:
 
         def subplotCMD(n_, x_, y_, title, xlabel, ylabel, color, legend=None, setup=True,save_fig=False):
             """
-            Creates a subplot for the final CMD plot.
+            Creates a subplot for the final CMD.
 
             Parameters:
             n_:     an integer corresponding to the subplot number
@@ -490,7 +488,7 @@ class OpenClusters:
         y_tri = self.Standards[mag]['mag']
         y_tri_err = self.Standards[mag]['merr']
 
-        #color1 color2 mag
+        # Labels for final CMDs
         x_label = color1 + ' - ' + color2
         y_label = mag
 
@@ -509,12 +507,12 @@ class OpenClusters:
 
         Parameters:
         self: 	 an OpenClusters object
-        markers: an array corresponding to the desired marker for each cluster. example: array containing . o
+        markers: an array corresponding to the desired marker for each cluster. example: array containing [., o]
         colors:  an array corresponding to the desired color of each marker for each cluster
         xlim: 	 a two dimensional array corresponding to the x-axis limits (if limits are desired).
-                Initially set to None. example: [0,400]
+                 Initially set to None. example: [0,400]
         ylim: 	 a two dimensional array corresponding to the y-axis limits (if limits are desired).
-                Initially set to None. example: [0,400]
+                 Initially set to None. example: [0,400]
         """
 
         # Check that stars were matched correctly, by visual inspection.
