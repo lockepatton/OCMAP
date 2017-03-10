@@ -1,17 +1,16 @@
 # from astropy.table import QTable, hstack
 import numpy as np
-import time
+# import time
 import datetime
 import glob
 import itertools
 import matplotlib.pyplot as plt
-import os
+# import os
 
 class OpenClusters:
     """
     Container for open clusters.
     """
-
     __author__ = ['Locke Patton', 'Ellis Avelone', 'Katie Crotts']
 
     def __init__(self, cluster, cluster_title, filters_images,
