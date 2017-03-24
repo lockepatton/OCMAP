@@ -11,7 +11,7 @@ class OpenClusters:
     """
     Container for open clusters.
     """
-    __author__ = ['Locke Patton', 'Ellis Avelone', 'Katie Crotts']
+    __author__ = ['Locke Patton', 'Ellis Avallone', 'Katie Crotts']
 
     def __init__(self, cluster, cluster_title, filters_images,
                  path_in_cluster, path_in_standards, path_out,
@@ -199,8 +199,8 @@ class OpenClusters:
         # Defining filters 1 and 2 as first inputed into filters list (apart from the filter with max # of stars)
         mag1,mag2 = np.delete(self.filters, magBase_index)[:2]
 
-        self.StarMatch_extra[mag1+'_'+magBase+'_radius'] = []
-        self.StarMatch_extra[mag2+'_'+magBase+'_radius'] = []
+        self.StarMatch_extra[mag1+'_'+magBase+'_RADIUS'] = []
+        self.StarMatch_extra[mag2+'_'+magBase+'_RADIUS'] = []
 
         if self.verbose:
             print 'base filter:',magBase
@@ -239,17 +239,22 @@ class OpenClusters:
             x_cen_magBase_i = x_cen_magBase[base_i]
             y_cen_magBase_i = y_cen_magBase[base_i]
 
+            print 'magBase - x_cen, y_cen:',x_cen_magBase_i,y_cen_magBase_i
+
             mag1_magBase_radius2 = radius2((x_cen_mag1 - x_cen_magBase_i),(y_cen_mag1 - y_cen_magBase_i))
             mag1_i = np.argmin(mag1_magBase_radius2)
 
-            if mag1_magBase_radius2.min() <= ratio*radius2(self.Centers[mag1]['MERR'][mag1_i],
-                                                           self.Centers[magBase]['MERR'][base_i]):
+            print 'min radius - mag1, magBase:', mag1_i**.5
+            print radius2(self.Centers[mag1]['MERR'][mag1_i], self.Centers[magBase]['MERR'][base_i])
+
+            if mag1_magBase_radius2.min() <= ratio * radius2(self.Centers[mag1]['MERR'][mag1_i],
+                                         self.Centers[magBase]['MERR'][base_i]):
 
                 mag2_magBase_radius2 = radius2((x_cen_mag2 - x_cen_magBase_i),(y_cen_mag2 - y_cen_magBase_i))
                 mag2_i = np.argmin(mag2_magBase_radius2)
 
                 if mag2_magBase_radius2.min() <= ratio * radius2(self.Centers[mag2]['MERR'][mag2_i],
-                                                                 self.Centers[magBase]['MERR'][base_i]):
+                                             self.Centers[magBase]['MERR'][base_i]):
 
                     self.StarMatch[magBase]['ID'].append(base_i)
                     self.StarMatch[magBase]['MAG'].append(mag_magBase[base_i])
@@ -269,14 +274,65 @@ class OpenClusters:
                     self.StarMatch[mag2]['XCENTER'].append(x_cen_mag2[mag2_i])
                     self.StarMatch[mag2]['YCENTER'].append(y_cen_mag2[mag2_i])
 
-                    self.StarMatch_extra[mag1 + '_' + magBase + '_radius'].append(mag1_magBase_radius2.min())
-                    self.StarMatch_extra[mag2 + '_' + magBase + '_radius'].append(mag2_magBase_radius2.min())
+                    self.StarMatch_extra[mag1 + '_' + magBase + '_RADIUS'].append(mag1_magBase_radius2.min())
+                    self.StarMatch_extra[mag2 + '_' + magBase + '_RADIUS'].append(mag2_magBase_radius2.min())
 
         if self.verbose_absolute:
             print '# Stars across filters',len(self.StarMatch[magBase]['ID']), '/', len(self.Centers[magBase]['ID'])
 
     def PlotMatchedXY(self, x=None, y=None, save_fig=False):
-        pass
+
+        if self.verbose:
+            print "\nRunning PlotMatchedXY"
+
+        import matplotlib.pyplot as plt
+        from astropy.visualization import astropy_mpl_style
+        plt.style.use(astropy_mpl_style)
+
+        fig, ax = plt.subplots(1, 1)
+        fig.set_size_inches(10, 10)
+
+
+        for filter_ in self.filters:
+            x_center = self.StarMatch[filter_]['XCENTER']
+            y_center = self.StarMatch[filter_]['YCENTER']
+
+            ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4,label=filter_)
+
+            ax.set_xlabel('X PIX')
+            ax.set_ylabel('Y PIX')
+
+            if x is not None:
+                ax.set_xlim(x[0],x[1])
+
+            if y is not None:
+                ax.set_ylim(y[0],y[1])
+
+            # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
+            ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
+
+        fig.show()
+
+        if save_fig:
+            import os
+            directory = self.path_out + 'plots/'
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+
+            filenameend_x = ''
+            filenameend_y = ''
+            if x != [None,None]:
+                filenameend_x = '_x' + str(x[0]) + ':' + str(x[1])
+            if y != [None,None]:
+                filenameend_y = '_y' + str(y[0]) + ':' + str(y[1])
+
+            filenameend = filenameend_x + filenameend_y
+
+            fig.savefig(directory + self.cluster + '_xy_matchedcenters' + filenameend + '.jpg', bbox_inches='tight')
+            del os
+
+        del plt
+        del astropy_mpl_style
 
     # Standardization functions
     def Standardize(self):
