@@ -202,6 +202,8 @@ class OpenClusters:
         self.StarMatch_extra[mag1+'_'+magBase+'_RADIUS'] = []
         self.StarMatch_extra[mag2+'_'+magBase+'_RADIUS'] = []
 
+        self.matchedFilters = [magBase,mag1,mag2]
+
         if self.verbose:
             print 'base filter:',magBase
             print 'matched filters:',mag1, mag2
@@ -230,7 +232,7 @@ class OpenClusters:
 
         #TODO: Go through **2 mistake and re-run all open cluster membership without the mistake
 
-        ratio = tol
+        ratio = tol*100
 
         if n_iterations == None:
             n_iterations = len(id_base)
@@ -239,22 +241,17 @@ class OpenClusters:
             x_cen_magBase_i = x_cen_magBase[base_i]
             y_cen_magBase_i = y_cen_magBase[base_i]
 
-            print 'magBase - x_cen, y_cen:',x_cen_magBase_i,y_cen_magBase_i
-
             mag1_magBase_radius2 = radius2((x_cen_mag1 - x_cen_magBase_i),(y_cen_mag1 - y_cen_magBase_i))
             mag1_i = np.argmin(mag1_magBase_radius2)
 
-            print 'min radius - mag1, magBase:', mag1_i**.5
-            print radius2(self.Centers[mag1]['MERR'][mag1_i], self.Centers[magBase]['MERR'][base_i])
-
             if mag1_magBase_radius2.min() <= ratio * radius2(self.Centers[mag1]['MERR'][mag1_i],
-                                         self.Centers[magBase]['MERR'][base_i]):
+                                                             self.Centers[magBase]['MERR'][base_i]):
 
                 mag2_magBase_radius2 = radius2((x_cen_mag2 - x_cen_magBase_i),(y_cen_mag2 - y_cen_magBase_i))
                 mag2_i = np.argmin(mag2_magBase_radius2)
 
                 if mag2_magBase_radius2.min() <= ratio * radius2(self.Centers[mag2]['MERR'][mag2_i],
-                                             self.Centers[magBase]['MERR'][base_i]):
+                                                                 self.Centers[magBase]['MERR'][base_i]):
 
                     self.StarMatch[magBase]['ID'].append(base_i)
                     self.StarMatch[magBase]['MAG'].append(mag_magBase[base_i])
@@ -290,26 +287,41 @@ class OpenClusters:
         plt.style.use(astropy_mpl_style)
 
         fig, ax = plt.subplots(1, 1)
-        fig.set_size_inches(10, 10)
+        fig.set_size_inches(10*2, 10*2)
 
+        # T = np.array([np.array([0, 10]), np.array([2, 12]), np.array([4, 14])])
+        # np.transpose(T)
 
-        for filter_ in self.filters:
-            x_center = self.StarMatch[filter_]['XCENTER']
-            y_center = self.StarMatch[filter_]['YCENTER']
+        magBase, mag1, mag2 = self.matchedFilters
 
-            ax.plot(x_center, y_center, linestyle='None', marker='o', markersize=10, alpha=.4,label=filter_)
+        x_center = [np.array(self.StarMatch[magBase]['XCENTER']),
+                     np.array(self.StarMatch[mag1]['XCENTER']),
+                     np.array(self.StarMatch[mag2]['XCENTER'])]
 
-            ax.set_xlabel('X PIX')
-            ax.set_ylabel('Y PIX')
+        y_center = [np.array(self.StarMatch[magBase]['YCENTER']),
+                     np.array(self.StarMatch[mag1]['YCENTER']),
+                     np.array(self.StarMatch[mag2]['YCENTER'])]
 
-            if x is not None:
-                ax.set_xlim(x[0],x[1])
+        star_x = np.transpose(x_center)
+        star_y = np.transpose(y_center)
 
-            if y is not None:
-                ax.set_ylim(y[0],y[1])
+        print star_x[:3],'\n', star_y[:3]
 
-            # ax.set_title(self.cluster_title + 'X-Center vs. Y-Center', fontsize='16',legend=filter_)
-            ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
+        for x_,y_ in zip(star_x,star_y):
+            ax.scatter(x_,y_,alpha=.2)
+            ax.plot(x_,y_)
+
+        ax.set_xlabel('X PIX')
+        ax.set_ylabel('Y PIX')
+
+        if x is not None:
+            ax.set_xlim(x[0],x[1])
+
+        if y is not None:
+            ax.set_ylim(y[0],y[1])
+
+        ax.set_title(self.cluster_title + 'Matched X-Center vs. Y-Center', fontsize='16')
+        # ax.legend(title='Filters', fancybox=True, loc="upper left", bbox_to_anchor=(1, 1))
 
         fig.show()
 
