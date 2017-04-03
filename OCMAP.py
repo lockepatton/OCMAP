@@ -14,7 +14,7 @@ class OpenClusters:
     __author__ = ['Locke Patton', 'Ellis Avallone', 'Katie Crotts']
 
     def __init__(self, cluster, cluster_title, filters_images,
-                 path_in_cluster, path_in_standards, path_out,
+                 path_in_cluster, path_in_standards, path_out,standardized=False,
                  t=None, verbose=True, verbose_absolute=True):
         """
         Parameters:
@@ -32,6 +32,7 @@ class OpenClusters:
         # Details about cluster under consideration
         self.cluster = cluster
         self.cluster_title = cluster_title
+        self.standardized = standardized
 
         # Paths for reading in open cluster magnitude files, standard star magnitude files and output files
         self.path_in_cluster = path_in_cluster
@@ -83,8 +84,6 @@ class OpenClusters:
             self.Centers[filter_]['XCENTER'] = iraf_als['XCENTER']
             self.Centers[filter_]['YCENTER'] = iraf_als['YCENTER']
             self.Centers[filter_]['NSTARS'] = n_stars
-
-
 
             # Printing filters, image name, iraf_als_file if verbose
             if self.verbose_absolute:
@@ -284,7 +283,7 @@ class OpenClusters:
 
         import matplotlib.pyplot as plt
         from astropy.visualization import astropy_mpl_style
-        plt.style.use(astropy_mpl_style)
+        # plt.style.use(astropy_mpl_style)
 
         fig, ax = plt.subplots(1, 1)
         fig.set_size_inches(10*2, 10*2)
@@ -352,6 +351,10 @@ class OpenClusters:
         Parameters:
         self: an OpenClusters object
         """
+        if self.standardized == False:
+            pass
+
+
         # TODO : make these standard names files - y_standards_names.txt
 
         #non-object oriented version from jupyter notebook

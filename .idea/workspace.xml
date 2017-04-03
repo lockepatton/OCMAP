@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aeebcfe-8b40-4c06-8ebf-179f0dbb1b55" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plots/kron5_xy_matchedcenters.jpg" afterPath="$PROJECT_DIR$/plots/kron5_xy_matchedcenters.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Build_Testbed.py" afterPath="$PROJECT_DIR$/Build_Testbed.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCMAP.py" afterPath="$PROJECT_DIR$/OCMAP.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OpenClusterTesting.py" afterPath="$PROJECT_DIR$/OpenClusterTesting.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,21 +21,19 @@
       <file leaf-file-name="OCMAP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OCMAP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="481" column="12" lean-forward="true" selection-start-line="481" selection-start-column="12" selection-end-line="481" selection-end-column="12" />
+            <state relative-caret-position="238">
+              <caret line="354" column="16" lean-forward="true" selection-start-line="354" selection-start-column="16" selection-end-line="354" selection-end-column="16" />
               <folding>
                 <element signature="e#43#61#0" expanded="true" />
                 <element signature="e#190#234#1" expanded="false" />
-                <element signature="e#501#3911#0" expanded="false" />
-                <element signature="e#4012#5646#0" expanded="false" />
-                <element signature="e#5722#11826#0" expanded="false" />
-                <element signature="e#11898#14033#0" expanded="false" />
-                <element signature="e#14102#21831#0" expanded="false" />
-                <element signature="e#21869#21908#0" expanded="false" />
-                <element signature="e#21949#21988#0" expanded="false" />
-                <element signature="e#22050#22089#0" expanded="false" />
-                <element signature="e#22132#25727#0" expanded="false" />
-                <element signature="e#25802#31299#0" expanded="false" />
+                <element signature="e#4070#5704#0" expanded="false" />
+                <element signature="e#5780#11884#0" expanded="false" />
+                <element signature="e#11956#14093#0" expanded="false" />
+                <element signature="e#21987#22026#0" expanded="false" />
+                <element signature="e#22067#22106#0" expanded="false" />
+                <element signature="e#22168#22207#0" expanded="false" />
+                <element signature="e#22250#25845#0" expanded="false" />
+                <element signature="e#25920#31417#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -47,11 +42,12 @@
       <file leaf-file-name="StarMatch_XYCenter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StarMatch_XYCenter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+            <state relative-caret-position="150">
+              <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="e#24#68#1" expanded="false" />
                 <element signature="e#335#3705#0" expanded="false" />
+                <element signature="e#335#1144#1" expanded="false" />
                 <element signature="e#3785#5355#0" expanded="false" />
                 <element signature="e#5431#11680#0" expanded="false" />
                 <element signature="e#11772#13365#0" expanded="false" />
@@ -63,8 +59,8 @@
       <file leaf-file-name="OpenClusterTesting.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+            <state relative-caret-position="165">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -85,8 +81,8 @@
       <file leaf-file-name="OCMAP_variables.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OCMAP_variables.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="75" column="40" lean-forward="false" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+            <state relative-caret-position="255">
+              <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -133,16 +129,16 @@
       <list>
         <option value="$PROJECT_DIR$/../../Levesque/jupyter/SlitSpectra4.py" />
         <option value="$PROJECT_DIR$/StarMatch_XYCenter.py" />
-        <option value="$PROJECT_DIR$/OCMAP.py" />
         <option value="$PROJECT_DIR$/Build_Testbed.py" />
         <option value="$PROJECT_DIR$/OpenClusterTesting.py" />
+        <option value="$PROJECT_DIR$/../../../surface3d_demo2.py" />
+        <option value="$PROJECT_DIR$/OCMAP.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
     <option name="y" value="23" />
-    <option name="width" value="1228" />
+    <option name="width" value="1280" />
     <option name="height" value="773" />
   </component>
   <component name="ProjectView">
@@ -160,6 +156,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -174,12 +172,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -188,6 +184,18 @@
         <option name="myUseModuleSdk" value="true" />
         <option name="myWorkingDirectory" value="$USER_HOME$/" />
       </console-settings>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
     </option>
   </component>
   <component name="RunManager" selected="Python.OpenClusterTesting">
@@ -206,6 +214,7 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OpenClusterTesting.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="false" name="Build_Testbed" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -223,6 +232,7 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Build_Testbed.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
@@ -243,6 +253,7 @@
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
@@ -255,25 +266,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="OCMAP" />
-      <method />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Attests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="OCMAP" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -305,15 +297,10 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="OCMAP" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -326,19 +313,38 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="OCMAP" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="OCMAP" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.OpenClusterTesting" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Build_Testbed" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.OpenClusterTesting" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Build_Testbed" />
+      </list>
+    </recent_temporary>
+    <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -355,23 +361,8 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <option name="testToRun" value="" />
-      <option name="keywords" value="" />
-      <option name="params" value="" />
-      <option name="USE_PARAM" value="false" />
-      <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Python.OpenClusterTesting" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Build_Testbed" />
-    </list>
-    <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.OpenClusterTesting" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Build_Testbed" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -396,25 +387,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="23" width="1228" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16735709" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16720517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21847507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2187959" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -446,6 +438,51 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Build_Testbed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OCMAP_variables.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="75" column="40" lean-forward="false" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OCMAP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#43#61#0" expanded="true" />
+            <element signature="e#190#234#1" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/StarMatch_XYCenter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -453,6 +490,7 @@
           <folding>
             <element signature="e#24#68#1" expanded="false" />
             <element signature="e#335#3705#0" expanded="false" />
+            <element signature="e#335#1144#1" expanded="false" />
             <element signature="e#3785#5355#0" expanded="false" />
             <element signature="e#5431#11680#0" expanded="false" />
             <element signature="e#11772#13365#0" expanded="false" />
@@ -493,16 +531,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -514,67 +550,7 @@
           <folding>
             <element signature="e#24#68#1" expanded="false" />
             <element signature="e#335#3705#0" expanded="false" />
-            <element signature="e#3785#5355#0" expanded="false" />
-            <element signature="e#5431#11680#0" expanded="false" />
-            <element signature="e#11772#13365#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Build_Testbed.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OCMAP_variables.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="75" column="40" lean-forward="false" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OCMAP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#61#0" expanded="true" />
-            <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StarMatch_XYCenter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#68#1" expanded="false" />
-            <element signature="e#335#3705#0" expanded="false" />
+            <element signature="e#335#1144#1" expanded="false" />
             <element signature="e#3785#5355#0" expanded="false" />
             <element signature="e#5431#11680#0" expanded="false" />
             <element signature="e#11772#13365#0" expanded="false" />
@@ -615,16 +591,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -662,16 +636,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -709,16 +681,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -756,16 +726,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -777,16 +745,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -850,16 +816,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -907,16 +871,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -958,16 +920,14 @@
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -986,29 +946,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../surface3d_demo2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OCMAP_variables.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="75" column="40" lean-forward="false" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+        <state relative-caret-position="255">
+          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StarMatch_XYCenter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding>
-            <element signature="e#24#68#1" expanded="false" />
-            <element signature="e#335#3705#0" expanded="false" />
-            <element signature="e#3785#5355#0" expanded="false" />
-            <element signature="e#5431#11680#0" expanded="false" />
-            <element signature="e#11772#13365#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1022,31 +974,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OpenClusterTesting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        <state relative-caret-position="165">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/StarMatch_XYCenter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#68#1" expanded="false" />
+            <element signature="e#335#3705#0" expanded="false" />
+            <element signature="e#335#1144#1" expanded="false" />
+            <element signature="e#3785#5355#0" expanded="false" />
+            <element signature="e#5431#11680#0" expanded="false" />
+            <element signature="e#11772#13365#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/OCMAP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="481" column="12" lean-forward="true" selection-start-line="481" selection-start-column="12" selection-end-line="481" selection-end-column="12" />
+        <state relative-caret-position="238">
+          <caret line="354" column="16" lean-forward="true" selection-start-line="354" selection-start-column="16" selection-end-line="354" selection-end-column="16" />
           <folding>
             <element signature="e#43#61#0" expanded="true" />
             <element signature="e#190#234#1" expanded="false" />
-            <element signature="e#501#3911#0" expanded="false" />
-            <element signature="e#4012#5646#0" expanded="false" />
-            <element signature="e#5722#11826#0" expanded="false" />
-            <element signature="e#11898#14033#0" expanded="false" />
-            <element signature="e#14102#21831#0" expanded="false" />
-            <element signature="e#21869#21908#0" expanded="false" />
-            <element signature="e#21949#21988#0" expanded="false" />
-            <element signature="e#22050#22089#0" expanded="false" />
-            <element signature="e#22132#25727#0" expanded="false" />
-            <element signature="e#25802#31299#0" expanded="false" />
+            <element signature="e#4070#5704#0" expanded="false" />
+            <element signature="e#5780#11884#0" expanded="false" />
+            <element signature="e#11956#14093#0" expanded="false" />
+            <element signature="e#21987#22026#0" expanded="false" />
+            <element signature="e#22067#22106#0" expanded="false" />
+            <element signature="e#22168#22207#0" expanded="false" />
+            <element signature="e#22250#25845#0" expanded="false" />
+            <element signature="e#25920#31417#0" expanded="false" />
           </folding>
         </state>
       </provider>
